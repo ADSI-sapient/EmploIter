@@ -36,11 +36,11 @@ class mdlEmpleado
         $query = $this->db->prepare($sql);
         $query->bindParam(1, $this->documento);
         $query->bindParam(2, $this->id_cargo);
-        $query->bindParam(3, $this->nombre);
-        $query->bindParam(4, $this->apellido);
-        $query->bindParam(5, $this->direccion);
-        $query->bindParam(6, $this->telefono);
-        $query->bindParam(7, $this->profesion);
+        $query->bindParam(3, $this->profesion);
+        $query->bindParam(4, $this->nombre);
+        $query->bindParam(5, $this->apellido);
+        $query->bindParam(6, $this->direccion);
+        $query->bindParam(7, $this->telefono);
         $query->bindParam(8, $this->salario);
         $query->execute();
         return $query;

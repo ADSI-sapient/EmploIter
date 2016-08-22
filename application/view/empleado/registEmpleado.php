@@ -264,7 +264,7 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h1 class="page-header">Registrar Empleado</h1>
+                        <h1 class="page-header"><i style="color: #0000cc;" class="fa fa-users" aria-hidden="true"></i>        Registrar Empleado</h1>
                     </div>
                     <!-- /.col-lg-12 -->
                 </div>
@@ -287,7 +287,11 @@
                   <div class="row col-lg-12">
                     <div class="form-group col-lg-4">  
                       <label for="profesion" class="">*Profesión:</label>
-                      <input type="text" name="profesion" class="form-control" required="" style="border-radius:5px;">
+                      <select  class="form-control" name="profesion" required="" style="border-radius:5px;">
+                        <option value="" selected="">Seleccionar</option>
+                        <option value="1">Tornero</option>
+                        <option value="2">Troquelador</option>
+                    </select>
                     </div>
                     <div class="form-group col-lg-4">
                     <label for="cargo" class="" >*Cargos:</label>
