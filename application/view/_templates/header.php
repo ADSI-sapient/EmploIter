@@ -18,6 +18,7 @@
 
     <!-- Custom CSS -->
     <link href="<?php echo URL; ?>css/sb-admin-2.css" rel="stylesheet">
+    <link href="<?php echo URL; ?>font-awesome-4.6.3/css/font-awesome.css" rel="stylesheet">
 
     <link href="<?php echo URL; ?>css/select2.min.css" rel="stylesheet">
 

@@ -12,14 +12,14 @@ private $mdlEmpleado;
 
 		if (isset($_POST['btnRegistrarEmp'])) {
 
-			$this->mdlEmpleado->__set("documento", $_POST['documento']);
-			$this->mdlEmpleado->__set("id_cargo", $_POST['cargo']);
-			$this->mdlEmpleado->__set("nombre", $_POST['nombre']);
-			$this->mdlEmpleado->__set("apellido", $_POST['apellido']);
-			$this->mdlEmpleado->__set("direccion", $_POST['direccion']);
-			$this->mdlEmpleado->__set("telefono", $_POST['telefono']);
-			$this->mdlEmpleado->__set("profesion", $_POST['profesion']);
-			$this->mdlEmpleado->__set("salario", $_POST['salario']);
+			$this->mdlEmpleado->__SET("documento", $_POST['documento']);
+			$this->mdlEmpleado->__SET("id_cargo", $_POST['cargo']);
+			$this->mdlEmpleado->__SET("nombre", $_POST['nombre']);
+			$this->mdlEmpleado->__SET("apellido", $_POST['apellido']);
+			$this->mdlEmpleado->__SET("direccion", $_POST['direccion']);
+			$this->mdlEmpleado->__SET("telefono", $_POST['telefono']);
+			$this->mdlEmpleado->__SET("profesion", $_POST['profesion']);
+			$this->mdlEmpleado->__SET("salario", $_POST['salario']);
 			$this->mdlEmpleado->regEmpleado();
 		}
 
@@ -31,6 +31,11 @@ private $mdlEmpleado;
 		require APP. 'view/_templates/footer.php';
 	}
 
+	public function listProfesiones(){
+		$profesiones = $this->mdlEmpleado->consProfesion();
+		echo json_encode($profesiones);
+	}
+
 	public function listarEmpleados(){
 		$empleados = $this->mdlEmpleado->listarEmpleados();
 
@@ -40,17 +45,26 @@ private $mdlEmpleado;
 	}
 
 	public function regProfesion(){
-		$this->mdlEmpleado->__set("profesion", $_POST['txtProfesion']);
-		$this->mdlEmpleado->regProfesion();	
+		$this->mdlEmpleado->__SET("profesion", $_POST['txtProfesion']);
+		echo json_encode($this->mdlEmpleado->regProfesion());	
+	}
+
+	public function regCargo(){
+		$this->mdlEmpleado->__SET("cargo", $_POST['txtCargo']);
+		$this->mdlEmpleado->__SET("salario", $_POST['txtSalario']);
+		$this->mdlEmpleado->regCargo();	
 
 		header("location: ".URL."ctrEmpleado/regEmpleado");
 	}
 
-	public function regCargo(){
-		$this->mdlEmpleado->__set("cargo", $_POST['txtCargo']);
-		$this->mdlEmpleado->__set("salario", $_POST['txtSalario']);
-		$this->mdlEmpleado->regCargo();	
+	public function borrarProfesion(){
+		$this->mdlEmpleado->__SET("id_profesion", $_POST["idProf"]);
+		$this->mdlEmpleado->borrarProfesion();
+	}
 
-		header("location: ".URL."ctrEmpleado/regEmpleado");
+	public function modificarProfesion(){
+		$this->mdlEmpleado->__SET("id_profesion", $_POST["idProf"]);
+		$this->mdlEmpleado->__SET("profesion", $_POST["nomProf"]);
+		echo json_encode($this->mdlEmpleado->modificarProfesion());
 	}
 }

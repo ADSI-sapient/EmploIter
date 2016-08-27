@@ -23,12 +23,12 @@ class mdlEmpleado
         }
     }
 
-    public function __set($atributo, $valor){
+    public function __SET($atributo, $valor){
         $this->$atributo = $valor;
     }    
 
 
-    public function __get($atributo){
+    public function __GET($atributo){
         return $this->$atributo;
     }
 
@@ -83,5 +83,20 @@ class mdlEmpleado
          $query = $this->db->prepare($sql);
          $query->execute();
          return $query->fetchAll();
+    }
+
+    public function borrarProfesion(){
+        $sql = "CALL SP_DeleteProf(?)";
+        $query = $this->db->prepare($sql);
+        $query->bindParam(1, $this->id_profesion);
+        return $query->execute();
+    }
+
+    public function modificarProfesion(){
+        $sql = "CALL SP_ActualizarProfesion(?, ?)";
+        $query = $this->db->prepare($sql);
+        $query->bindParam(1, $this->id_profesion);
+        $query->bindParam(2, $this->profesion);
+        return $query->execute();
     }
 }

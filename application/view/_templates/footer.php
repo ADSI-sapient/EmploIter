@@ -30,6 +30,11 @@
     <!-- Custom Theme JavaScript -->
     <script src="<?php echo URL; ?>js/sb-admin-2.js"></script>
     <script src="<?php echo URL; ?>js/select2.full.min.js"></script>
+    <script type="text/javascript">
+        var uri = "<?= URL;?>";
+    </script>
+
+    <script src="<?php echo URL; ?>js/empleado.js"></script>
 
 
     <!-- Page-Level Demo Scripts - Tables - Use for reference -->
