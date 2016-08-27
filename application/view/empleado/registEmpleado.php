@@ -28,7 +28,7 @@
               <label for="profesion" class="">*Profesión:</label>
 
               <div class="input-group">  
-                <select  class="form-control" id="SelectProfesion" required="" style="border-radius:5px;">
+                <select name="profesion" class="form-control" id="SelectProfesion" required="" style="border-radius:5px;">
                  <!--  <option selected="" data-icon="fa-adn">Seleccionar</option>
                   <?php foreach ($profesiones as $profesion): ?>
                     <option value="<?= $profesion["id_profesion"]?>"><?= $profesion["nombre"]?></option> 
@@ -44,16 +44,13 @@
             <div class="form-group col-lg-4">
               <label for="cargo" class="" >*Cargos:</label>
 
-              <div class="input-group">
+              <div>
                 <select  class="form-control" name="cargo" required="" style="border-radius:5px;">
-                  <option selected="">Seleccionar</option>
+                  <option selected=""></option>
                   <?php foreach ($cargos as $cargo): ?>
                     <option value="<?= $cargo["id_cargo"]?>"><?= $cargo["nombre"]?></option>     
                   <?php endforeach ?>
                 </select>
-                <div  data-toggle="modal" data-target="#modalRegCargo" class="input-group-addon">
-                  <i  class="fa fa-plus-circle fa-lg" arial-hidden="true"></i>
-                </div>
               </div>
             </div>
             <div class="form-group col-lg-4">  
@@ -153,61 +150,6 @@
 
 
 
-
-<div class="modal fade" tabindex="-1" role="dialog" id="modalRegCargo">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 style="text-align: center;" class="modal-title">Registrar Cargo</h4>
-      </div>
-      <div class="modal-body">
-        <form action="<?= URL; ?>ctrEmpleado/regCargo" method="POST">
-          <div  style="padding-right: 0;" class="row col-sm-12">
-            <div class="form-group">
-              <div class="col-sm-5">  
-                <input placeholder="Ingrese cargo" type="text" name="txtCargo" class="form-control" required="" style="border-radius:5px;">
-              </div> 
-              <div  class="col-sm-5">
-                <input placeholder="Ingrese salario" type="text" name="txtSalario" class="form-control" required="" style="border-radius:5px;">
-              </div>
-              <div  class="col-sm-2">
-                <button type="button" class='btn btn-box-tool'><i style="color: green; font-size: 200%;" class="fa fa-user-plus" aria-hidden="true"></i></button>
-              </div> 
-            </div>
-          </div>
-          <br>
-          <br>
-          <br>
-          <div class="row col-sm-12">
-            <div class="dataTable_wrapper table-responsive">
-              <table width="100%" class="table table-striped table-hover">
-                <thead>
-                  <tr>
-                    <th>Código</th>
-                    <th style="text-align: center;">Proceso</th>
-                    <th>Salario</th>
-                    <th>Eliminar</th>
-                    <th>Modificar</th>
-                    <th>Guardar</th>
-                    <th style="display: none;"></th>
-                  </tr>
-                </thead>
-                <tbody id="tbody-cargo">
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-        <div>
-          <div class="modal-footer" style="border-top:none; border-bottom:1px solid;">
-            <button style="margin-right: 5%; margin-top: 2%;" type="submit" class="btn btn-primary">Registrar</button>
-          </div>
-        </div>
-      </form>  
-    </div><!-- /.modal-content -->
-  </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
 
 
 

@@ -6,6 +6,7 @@ private $mdlEmpleado;
 	function __construct()
 	{
 		$this->mdlEmpleado = $this->loadModel("mdlEmpleado");
+		$this->_modelCargo = $this->loadModel("mdlCargo");
 	}
 
 	public function regEmpleado(){
@@ -18,13 +19,12 @@ private $mdlEmpleado;
 			$this->mdlEmpleado->__SET("apellido", $_POST['apellido']);
 			$this->mdlEmpleado->__SET("direccion", $_POST['direccion']);
 			$this->mdlEmpleado->__SET("telefono", $_POST['telefono']);
-			$this->mdlEmpleado->__SET("profesion", $_POST['profesion']);
-			$this->mdlEmpleado->__SET("salario", $_POST['salario']);
+			$this->mdlEmpleado->__SET("id_profesion", $_POST['profesion']);
 			$this->mdlEmpleado->regEmpleado();
 		}
 
 		$profesiones = $this->mdlEmpleado->consProfesion();
-		$cargos = $this->mdlEmpleado->consCargos();
+		$cargos = $this->_modelCargo->consCargos();
 
 		require APP. 'view/_templates/header.php';
 		require APP. 'view/empleado/registEmpleado.php';
@@ -47,14 +47,6 @@ private $mdlEmpleado;
 	public function regProfesion(){
 		$this->mdlEmpleado->__SET("profesion", $_POST['txtProfesion']);
 		echo json_encode($this->mdlEmpleado->regProfesion());	
-	}
-
-	public function regCargo(){
-		$this->mdlEmpleado->__SET("cargo", $_POST['txtCargo']);
-		$this->mdlEmpleado->__SET("salario", $_POST['txtSalario']);
-		$this->mdlEmpleado->regCargo();	
-
-		header("location: ".URL."ctrEmpleado/regEmpleado");
 	}
 
 	public function borrarProfesion(){

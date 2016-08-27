@@ -2,6 +2,7 @@
 
 class mdlEmpleado
 {
+    private $db;
     private $id_cargo;
     private $id_profesion;
     private $nombre;
@@ -11,8 +12,6 @@ class mdlEmpleado
     private $direccion;
 
     private $profesion;
-    private $cargo;
-    private $salario;
     
     function __construct($db)
     {
@@ -43,7 +42,6 @@ class mdlEmpleado
         $query->bindParam(5, $this->apellido);
         $query->bindParam(6, $this->direccion);
         $query->bindParam(7, $this->telefono);
-        // $query->bindParam(8, $this->salario);
         $query->execute();
         return $query;
     }
@@ -63,23 +61,8 @@ class mdlEmpleado
         return $query->execute();
     }
 
-    public function regCargo(){
-        $sql = "CALL SP_RegistrarCargo(?, ?)";
-        $query = $this->db->prepare($sql);
-        $query->bindParam(1, $this->cargo);
-        $query->bindParam(2, $this->salario);
-        return $query->execute();
-    }
-
     public function consProfesion(){
          $sql = "CALL SP_ConsProfesion()";
-         $query = $this->db->prepare($sql);
-         $query->execute();
-         return $query->fetchAll();
-    }
-
-    public function consCargos(){
-         $sql = "CALL SP_ConsCargos()";
          $query = $this->db->prepare($sql);
          $query->execute();
          return $query->fetchAll();

@@ -3,7 +3,7 @@
 
     <!-- jQuery, loaded in the recommended protocol-less way -->
     <!-- more http://www.paulirish.com/2010/the-protocol-relative-url/ -->
-    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="<?php echo URL; ?>js/jquery/jquery.js"></script>
 
     <!-- define the project's URL (to make AJAX calls possible, even when using this in sub-folders etc) -->
     <script>
@@ -28,13 +28,18 @@
     <script src="<?php echo URL; ?>bower_components/datatables-responsive/js/dataTables.responsive.js"></script>
     
     <!-- Custom Theme JavaScript -->
+    <script src="<?php echo URL; ?>js/metisMenu/metisMenu.js"></script>
     <script src="<?php echo URL; ?>js/sb-admin-2.js"></script>
     <script src="<?php echo URL; ?>js/select2.full.min.js"></script>
     <script type="text/javascript">
         var uri = "<?= URL;?>";
     </script>
 
+
+    <?php require APP.'view/Cargo/contentBox.php';?>
     <script src="<?php echo URL; ?>js/empleado.js"></script>
+    <script src="<?php echo URL; ?>js/cargo.js"></script>
+    <script src="<?php echo URL; ?>js/proceso.js"></script>
 
 
     <!-- Page-Level Demo Scripts - Tables - Use for reference -->

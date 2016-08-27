@@ -267,7 +267,7 @@
 
                 <div class="navbar-default sidebar" role="navigation">
                     <div class="sidebar-nav navbar-collapse">
-                        <ul class="nav" id="side-menu">
+                        <ul class="nav in" id="side-menu">
                             <li class="sidebar-search">
                                 <div class="input-group custom-search-form">
                                     <input type="text" class="form-control" placeholder="Buscar...">
@@ -280,16 +280,34 @@
                                 <!-- /input-group -->
                             </li>
                             <li>
-                                <a href="<?= URL ?>home/index"><i class="fa fa-dashboard fa-fw"></i> Inicio</a>
+                                <a class="active" href="<?= URL ?>home/index"><i class="fa fa-dashboard fa-fw"></i> Inicio</a>
                             </li>
-                            <li class="active">
-                                <a href="#"><i class="fa fa-files-o fa-fw"></i> Empleados<span class="fa arrow"></span></a>
-                                <ul class="nav nav-second-level">
+                            <li>
+                                <a href="#"><i class="fa fa-users"></i> Empleados<span class="fa arrow"></span></a>
+                                <ul class="nav nav-second-level collapse">
                                     <li>
-                                        <a class="active" href="#">Registrar Empleado</a>
+                                        <a class="active" href="<?= URL ?>ctrEmpleado/regEmpleado">Registrar Empleado</a>
                                     </li>
                                     <li>
                                         <a href="<?= URL ?>ctrEmpleado/listarEmpleados">Listar Empleados</a>
+                                    </li>
+                                </ul>
+                                <!-- /.nav-second-level -->
+                            </li>
+                            <li>
+                                <a class="active" href="<?= URL ?>ctrCargo/registrarCargo"><i class="fa fa-user-plus"></i>  Cargos</a>
+                            </li>
+                            <li>
+                                <a class="active" href="<?= URL ?>ctrProceso/registrarProceso"><i class="fa fa-cogs"></i>  Procesos</a>
+                            </li>
+                            <li>
+                                <a href="#"><i class="fa fa-users"></i>Peligros<span class="fa arrow"></span></a>
+                                <ul class="nav nav-second-level collapse">
+                                    <li>
+                                        <a class="active" href="<?= URL ?>ctrPeligro/regPeligro">Registrar Peligro</a>
+                                    </li>
+                                    <li>
+                                        <a href="<?= URL ?>">Listar Peligros</a>
                                     </li>
                                 </ul>
                                 <!-- /.nav-second-level -->
