@@ -112,3 +112,13 @@ function registrarProfesion(){
 		}
 	});
 }
+
+
+function consFichaRies(empleado, idCargo){
+	$("#titleMod").empty();
+	var emp = $(empleado).parent().parent();
+	var tituloModal = "<p><strong>Nombre:</strong> "+$(emp).find("td").eq(0).html()+
+	"  <br> <strong>Cargo:</strong> "+$(emp).find("td").eq(1).html()+
+	"  <br> <strong>CC:</strong> "+$(emp).find("td").eq(3).html()+"</p>"; 
+	$("#titleMod").append(tituloModal);
+}
