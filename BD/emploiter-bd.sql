@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 27-08-2016 a las 17:16:14
+-- Tiempo de generación: 29-08-2016 a las 13:21:00
 -- Versión del servidor: 10.1.13-MariaDB
 -- Versión de PHP: 5.6.21
 
@@ -41,7 +41,8 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_DeleteProf` (IN `idProf` INT)  N
 DELETE FROM tbl_profesiones WHERE id_profesion = idProf$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_ListarEmpleados` ()  NO SQL
-SELECT e.documento, e.nombre, e.apellido, c.nombre as nombre_Cargo, e.telefono, c.salario FROM tbl_empleados e JOIN tbl_cargos c ON e.id_cargo = c.id_cargo$$
+SELECT concat(e.nombre, ' ', e.apellido) empleado, c.nombre cargo, e.direccion, e.documento, p.nombre profesion, c.salario, c.id_cargo FROM tbl_profesiones p JOIN tbl_empleados e ON p.id_profesion = e.id_profesion JOIN tbl_cargos c
+ON e.id_cargo = c.id_cargo$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_ListPeligros` ()  NO SQL
 SELECT p.*, r.nivelRiesgo riesgo FROM tbl_peligros p JOIN tbl_evaluacionriesgos r
@@ -60,11 +61,23 @@ UPDATE tbl_zonas SET nombre = nom WHERE id_zona = id$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_RegCargoProces` (IN `id_carg` INT, IN `id_proc` INT)  NO SQL
 INSERT INTO tbl_procesocargo VALUES(null, id_proc, id_carg)$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_RegCont` (IN `fuente` TEXT, IN `medio` TEXT, IN `indiv` TEXT, IN `idCrit` INT)  NO SQL
+INSERT INTO tbl_controles VALUES(null, fuente, medio, indiv, idCrit)$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_RegCritCont` (IN `peorCon` VARCHAR(100), IN `reqLeg` VARCHAR(2), IN `idMedIn` INT)  NO SQL
+INSERT INTO tbl_criterios_controles VALUES (null, null, peorCon, reqLeg, idMedIn)$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_RegistrarCargo` (IN `nom` VARCHAR(50), IN `sal` DOUBLE)  NO SQL
 INSERT INTO tbl_cargos VALUES (null, nom, sal)$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_RegistrarProfesion` (IN `nom` VARCHAR(45))  NO SQL
 INSERT into tbl_profesiones VALUES (null, nom)$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_RegMedInt` (IN `ctrIng` TEXT, IN `descr` TEXT)  NO SQL
+INSERT INTO tbl_medidasintervencion VALUES(null, ctrIng, descr)$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_RegPeligro` (IN `idRi` INT, IN `idCon` INT, IN `clas` VARCHAR(45), IN `descr` VARCHAR(300), IN `efectos` VARCHAR(300))  NO SQL
+INSERT INTO tbl_peligros VALUES(null, idRi, idCon, clas, descr, efectos)$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_RegProceso` (IN `idZona` INT, IN `nom` VARCHAR(45), IN `tare` TEXT, IN `rut` VARCHAR(2))  NO SQL
 INSERT INTO tbl_procesos VALUES (null, idZona, nom, tare, rut, 0)$$
@@ -72,14 +85,29 @@ INSERT INTO tbl_procesos VALUES (null, idZona, nom, tare, rut, 0)$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_RegProcesoPeligro` (IN `idPro` INT, IN `idPel` INT)  NO SQL
 INSERT INTO tbl_peligrosprocesos VALUES(null, idPro, idPel)$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_RegRiesgo` (IN `a` INT, IN `b` INT, IN `c` INT, IN `d` VARCHAR(3), IN `e` INT, IN `f` INT, IN `g` INT, IN `h` TEXT)  NO SQL
+INSERT INTO tbl_evaluacionriesgos VALUES(null, a, b, c, d, e, f, g, h)$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_RegZona` (IN `nom` VARCHAR(45))  NO SQL
 INSERT INTO tbl_zonas VALUES(null, nom)$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_UltCargo` ()  NO SQL
 SELECT max(id_cargo) id_cargo FROM tbl_cargos$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_UltCont` ()  NO SQL
+SELECT MAX(id_control) idControl FROM tbl_controles$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_UltCritCont` ()  NO SQL
+SELECT MAX(id_criterio_control) idCriCon FROM tbl_criterios_controles$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_UltMedInt` ()  NO SQL
+SELECT MAX(idMedidasIntervencion) idMedInt FROM tbl_medidasintervencion$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_UltProc` ()  NO SQL
 SELECT max(id_proceso) id_proceso FROM tbl_procesos$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_UltRiesgo` ()  NO SQL
+SELECT MAX(id_riesgos)idRiesgo FROM tbl_evaluacionriesgos$$
 
 DELIMITER ;
 
@@ -122,15 +150,19 @@ CREATE TABLE `tbl_controles` (
   `fuente` text,
   `medio` text,
   `individuo` text,
-  `tbl_Criterios_Controles_id_criterio_control` int(11) NOT NULL
+  `id_criterio` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `tbl_controles`
 --
 
-INSERT INTO `tbl_controles` (`id_control`, `fuente`, `medio`, `individuo`, `tbl_Criterios_Controles_id_criterio_control`) VALUES
-(1, NULL, NULL, NULL, 1);
+INSERT INTO `tbl_controles` (`id_control`, `fuente`, `medio`, `individuo`, `id_criterio`) VALUES
+(1, NULL, NULL, NULL, 1),
+(2, 'ninguno', 'ninguno', 'ningunno', 3),
+(3, 'qwer', 'rewq', 'weqr', 4),
+(4, 'Prueba final', 'Prueba final', 'Prueba final', 5),
+(5, 'fsdadf', 'adsfaf', 'fasfa', 6);
 
 -- --------------------------------------------------------
 
@@ -140,8 +172,8 @@ INSERT INTO `tbl_controles` (`id_control`, `fuente`, `medio`, `individuo`, `tbl_
 
 CREATE TABLE `tbl_criterios_controles` (
   `id_criterio_control` int(11) NOT NULL,
-  `numExpuestos` varchar(45) NOT NULL,
-  `peorConsecuencia` varchar(45) NOT NULL,
+  `numExpuestos` varchar(45) DEFAULT NULL,
+  `peorConsecuencia` varchar(100) DEFAULT NULL,
   `requisitoLegal` varchar(2) DEFAULT NULL,
   `id_medidasIntervencion` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -151,7 +183,12 @@ CREATE TABLE `tbl_criterios_controles` (
 --
 
 INSERT INTO `tbl_criterios_controles` (`id_criterio_control`, `numExpuestos`, `peorConsecuencia`, `requisitoLegal`, `id_medidasIntervencion`) VALUES
-(1, '12', 'morir', NULL, 1);
+(1, '12', 'morir', NULL, 1),
+(2, NULL, 'Morir2', 'Si', 4),
+(3, NULL, 'Morir otra vez', 'No', 5),
+(4, NULL, 'Cuarta prueba', 'Si', 6),
+(5, NULL, 'Prueba final', 'nu', 7),
+(6, NULL, 'asds', 'No', 8);
 
 -- --------------------------------------------------------
 
@@ -184,14 +221,14 @@ INSERT INTO `tbl_empleados` (`documento`, `id_cargo`, `id_profesion`, `nombre`, 
 
 CREATE TABLE `tbl_evaluacionriesgos` (
   `id_riesgos` int(11) NOT NULL,
-  `ND` int(11) DEFAULT NULL,
-  `NE` int(11) DEFAULT NULL,
-  `NP` int(11) DEFAULT NULL,
-  `interp` varchar(3) DEFAULT NULL,
-  `NC` int(11) DEFAULT NULL,
-  `NR` int(11) DEFAULT NULL,
+  `ND` int(11) NOT NULL,
+  `NE` int(11) NOT NULL,
+  `NP` int(11) NOT NULL,
+  `interp` varchar(3) NOT NULL,
+  `NC` int(11) NOT NULL,
+  `NR` int(11) NOT NULL,
   `nivelRiesgo` int(11) NOT NULL,
-  `valoracion` text
+  `valoracion` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -199,7 +236,12 @@ CREATE TABLE `tbl_evaluacionriesgos` (
 --
 
 INSERT INTO `tbl_evaluacionriesgos` (`id_riesgos`, `ND`, `NE`, `NP`, `interp`, `NC`, `NR`, `nivelRiesgo`, `valoracion`) VALUES
-(1, 1, 2, 3, '4', 5, 2, 3, 'Es nivel medio de riesgo');
+(1, 1, 2, 3, '4', 5, 2, 3, 'Es nivel medio de riesgo'),
+(2, 1, 2, 3, '4', 5, 6, 7, '8'),
+(3, 5, 5, 5, 'J', 5, 5, 5, '5'),
+(4, 1, 2, 3, 'M', 5, 6, 7, 'Quinta prueba'),
+(5, 1, 2, 3, 'J', 4, 5, 5, 'Prueba final'),
+(6, 4, 4, 4, '4', 4, 4, 4, '44fs');
 
 -- --------------------------------------------------------
 
@@ -209,18 +251,23 @@ INSERT INTO `tbl_evaluacionriesgos` (`id_riesgos`, `ND`, `NE`, `NP`, `interp`, `
 
 CREATE TABLE `tbl_medidasintervencion` (
   `idMedidasIntervencion` int(11) NOT NULL,
-  `ctrIngenieria` varchar(45) NOT NULL,
-  `senalizacion` varchar(200) DEFAULT NULL,
-  `advertencias` varchar(200) DEFAULT NULL,
-  `ctrAdministrativo` varchar(200) DEFAULT NULL
+  `ctrIngenieria` text,
+  `descripcion` text
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `tbl_medidasintervencion`
 --
 
-INSERT INTO `tbl_medidasintervencion` (`idMedidasIntervencion`, `ctrIngenieria`, `senalizacion`, `advertencias`, `ctrAdministrativo`) VALUES
-(1, 'nose', NULL, NULL, NULL);
+INSERT INTO `tbl_medidasintervencion` (`idMedidasIntervencion`, `ctrIngenieria`, `descripcion`) VALUES
+(1, '', ''),
+(2, 'asd', 'dsa'),
+(3, 'klñ', 'ñlk'),
+(4, 'zxc', 'cxz'),
+(5, 'tercero', 'tercero'),
+(6, 'Cuartaa prueba', 'Cuarta prueba'),
+(7, 'Prueba final', 'Prueba final'),
+(8, 'fasd', 'asffa');
 
 -- --------------------------------------------------------
 
@@ -242,7 +289,10 @@ CREATE TABLE `tbl_peligros` (
 --
 
 INSERT INTO `tbl_peligros` (`id_peligro`, `id_riesgo`, `id_control`, `clasificacion`, `descripcion`, `efectos`) VALUES
-(1, 1, 1, 'Quimico', 'es peligrosa', 'dolor de cabez');
+(1, 1, 1, 'Quimico', 'es peligrosa', 'dolor de cabez'),
+(2, 2, 2, 'Fiisico', 'Malo', 'Morir&'),
+(3, 5, 4, 'Prueba final', 'Prueba final', 'Prueba final'),
+(4, 6, 5, 'afsdfa', 'afas', 'adfasdf');
 
 -- --------------------------------------------------------
 
@@ -334,7 +384,7 @@ CREATE TABLE `tbl_profesiones` (
 --
 
 INSERT INTO `tbl_profesiones` (`id_profesion`, `nombre`) VALUES
-(1, 'Medico'),
+(1, 'Medicos'),
 (2, 'Analista'),
 (3, 'Profesor');
 
@@ -373,7 +423,7 @@ ALTER TABLE `tbl_cargos`
 --
 ALTER TABLE `tbl_controles`
   ADD PRIMARY KEY (`id_control`),
-  ADD KEY `fk_tbl_Controles_tbl_Criterios_Controles1_idx` (`tbl_Criterios_Controles_id_criterio_control`);
+  ADD KEY `fk_tbl_Controles_tbl_Criterios_Controles1_idx` (`id_criterio`);
 
 --
 -- Indices de la tabla `tbl_criterios_controles`
@@ -459,27 +509,27 @@ ALTER TABLE `tbl_cargos`
 -- AUTO_INCREMENT de la tabla `tbl_controles`
 --
 ALTER TABLE `tbl_controles`
-  MODIFY `id_control` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_control` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT de la tabla `tbl_criterios_controles`
 --
 ALTER TABLE `tbl_criterios_controles`
-  MODIFY `id_criterio_control` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_criterio_control` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT de la tabla `tbl_evaluacionriesgos`
 --
 ALTER TABLE `tbl_evaluacionriesgos`
-  MODIFY `id_riesgos` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_riesgos` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT de la tabla `tbl_medidasintervencion`
 --
 ALTER TABLE `tbl_medidasintervencion`
-  MODIFY `idMedidasIntervencion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idMedidasIntervencion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT de la tabla `tbl_peligros`
 --
 ALTER TABLE `tbl_peligros`
-  MODIFY `id_peligro` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_peligro` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT de la tabla `tbl_peligrosprocesos`
 --
@@ -499,7 +549,7 @@ ALTER TABLE `tbl_procesos`
 -- AUTO_INCREMENT de la tabla `tbl_profesiones`
 --
 ALTER TABLE `tbl_profesiones`
-  MODIFY `id_profesion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_profesion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT de la tabla `tbl_zonas`
 --
@@ -513,7 +563,7 @@ ALTER TABLE `tbl_zonas`
 -- Filtros para la tabla `tbl_controles`
 --
 ALTER TABLE `tbl_controles`
-  ADD CONSTRAINT `fk_tbl_Controles_tbl_Criterios_Controles1` FOREIGN KEY (`tbl_Criterios_Controles_id_criterio_control`) REFERENCES `tbl_criterios_controles` (`id_criterio_control`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_tbl_Controles_tbl_Criterios_Controles1` FOREIGN KEY (`id_criterio`) REFERENCES `tbl_criterios_controles` (`id_criterio_control`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Filtros para la tabla `tbl_criterios_controles`
