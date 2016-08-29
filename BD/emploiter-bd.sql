@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 29-08-2016 a las 13:21:00
+-- Tiempo de generación: 29-08-2016 a las 16:48:00
 -- Versión del servidor: 10.1.13-MariaDB
 -- Versión de PHP: 5.6.21
 
@@ -34,6 +34,9 @@ DELETE FROM tbl_zonas WHERE id_zona = id$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_ConsCargos` ()  NO SQL
 SELECT * FROM tbl_cargos$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_ConsPeligros` (IN `_id_proceso` INT)  NO SQL
+SELECT p.clasificacion, p.descripcion descr_Procs, p.efectos, c.fuente, c.medio, c.individuo, cc.peorConsecuencia, cc.requisitoLegal, mi.ctrIngenieria, mi.descripcion , er.* FROM tbl_peligrosprocesos pp JOIN tbl_peligros p ON pp.id_peligro = p.id_peligro JOIN tbl_controles c ON p.id_control = c.id_control JOIN tbl_criterios_controles cc ON c.id_criterio = cc.id_criterio_control JOIN tbl_medidasintervencion mi ON cc.id_medidasIntervencion = mi.idMedidasIntervencion JOIN tbl_evaluacionriesgos er ON p.id_riesgo = er.id_riesgos WHERE pp.id_proceso = _id_proceso$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_ConsProfesion` ()  NO SQL
 SELECT * FROM tbl_profesiones$$
 
@@ -43,6 +46,9 @@ DELETE FROM tbl_profesiones WHERE id_profesion = idProf$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_ListarEmpleados` ()  NO SQL
 SELECT concat(e.nombre, ' ', e.apellido) empleado, c.nombre cargo, e.direccion, e.documento, p.nombre profesion, c.salario, c.id_cargo FROM tbl_profesiones p JOIN tbl_empleados e ON p.id_profesion = e.id_profesion JOIN tbl_cargos c
 ON e.id_cargo = c.id_cargo$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_ListarProcesos` (IN `_id_cargo` INT)  NO SQL
+SELECT p.nobre, p.tareas, z.nombre zona, p.rutinaria, p.id_proceso FROM tbl_procesocargo pc JOIN tbl_procesos p ON pc.id_proceso = p.id_proceso JOIN tbl_zonas z ON z.id_zona = p.id_zona WHERE pc.id_cargo = _id_cargo$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_ListPeligros` ()  NO SQL
 SELECT p.*, r.nivelRiesgo riesgo FROM tbl_peligros p JOIN tbl_evaluacionriesgos r
@@ -137,7 +143,8 @@ INSERT INTO `tbl_cargos` (`id_cargo`, `nombre`, `salario`) VALUES
 (7, 'Troquelador', 1000000),
 (8, 'Troquelador', 1000000),
 (9, 'Tornero', 300000),
-(10, 'Presidente', 900000000);
+(10, 'Presidente', 900000000),
+(11, 'Desarrollador', 5000000);
 
 -- --------------------------------------------------------
 
@@ -162,7 +169,8 @@ INSERT INTO `tbl_controles` (`id_control`, `fuente`, `medio`, `individuo`, `id_c
 (2, 'ninguno', 'ninguno', 'ningunno', 3),
 (3, 'qwer', 'rewq', 'weqr', 4),
 (4, 'Prueba final', 'Prueba final', 'Prueba final', 5),
-(5, 'fsdadf', 'adsfaf', 'fasfa', 6);
+(5, 'fsdadf', 'adsfaf', 'fasfa', 6),
+(6, 'nose', 'menos', 'tampoco', 7);
 
 -- --------------------------------------------------------
 
@@ -188,7 +196,8 @@ INSERT INTO `tbl_criterios_controles` (`id_criterio_control`, `numExpuestos`, `p
 (3, NULL, 'Morir otra vez', 'No', 5),
 (4, NULL, 'Cuarta prueba', 'Si', 6),
 (5, NULL, 'Prueba final', 'nu', 7),
-(6, NULL, 'asds', 'No', 8);
+(6, NULL, 'asds', 'No', 8),
+(7, NULL, 'muerte', 'Si', 9);
 
 -- --------------------------------------------------------
 
@@ -211,7 +220,8 @@ CREATE TABLE `tbl_empleados` (
 --
 
 INSERT INTO `tbl_empleados` (`documento`, `id_cargo`, `id_profesion`, `nombre`, `apellido`, `direccion`, `telefono`) VALUES
-('1234567', 2, 2, 'Johan', 'Arteaga', 'call71c #30-215 INT 127', '3116440736');
+('1234567', 2, 2, 'Johan', 'Arteaga', 'call71c #30-215 INT 127', '3116440736'),
+('24821548', 11, 7, 'juan ', 'mora', 'cl 548 S 54 - 12', '25481548');
 
 -- --------------------------------------------------------
 
@@ -241,7 +251,8 @@ INSERT INTO `tbl_evaluacionriesgos` (`id_riesgos`, `ND`, `NE`, `NP`, `interp`, `
 (3, 5, 5, 5, 'J', 5, 5, 5, '5'),
 (4, 1, 2, 3, 'M', 5, 6, 7, 'Quinta prueba'),
 (5, 1, 2, 3, 'J', 4, 5, 5, 'Prueba final'),
-(6, 4, 4, 4, '4', 4, 4, 4, '44fs');
+(6, 4, 4, 4, '4', 4, 4, 4, '44fs'),
+(7, 4, 3, 3, 'mj', 2, 2, 1, 'Otro');
 
 -- --------------------------------------------------------
 
@@ -267,7 +278,8 @@ INSERT INTO `tbl_medidasintervencion` (`idMedidasIntervencion`, `ctrIngenieria`,
 (5, 'tercero', 'tercero'),
 (6, 'Cuartaa prueba', 'Cuarta prueba'),
 (7, 'Prueba final', 'Prueba final'),
-(8, 'fasd', 'asffa');
+(8, 'fasd', 'asffa'),
+(9, 'nada', 'adios');
 
 -- --------------------------------------------------------
 
@@ -292,7 +304,8 @@ INSERT INTO `tbl_peligros` (`id_peligro`, `id_riesgo`, `id_control`, `clasificac
 (1, 1, 1, 'Quimico', 'es peligrosa', 'dolor de cabez'),
 (2, 2, 2, 'Fiisico', 'Malo', 'Morir&'),
 (3, 5, 4, 'Prueba final', 'Prueba final', 'Prueba final'),
-(4, 6, 5, 'afsdfa', 'afas', 'adfasdf');
+(4, 6, 5, 'afsdfa', 'afas', 'adfasdf'),
+(5, 7, 6, 'material', 'Hola', 'NAda');
 
 -- --------------------------------------------------------
 
@@ -311,7 +324,9 @@ CREATE TABLE `tbl_peligrosprocesos` (
 --
 
 INSERT INTO `tbl_peligrosprocesos` (`id_peligroProceso`, `id_proceso`, `id_peligro`) VALUES
-(4, 10, 1);
+(4, 10, 1),
+(5, 11, 3),
+(6, 11, 5);
 
 -- --------------------------------------------------------
 
@@ -335,7 +350,8 @@ INSERT INTO `tbl_procesocargo` (`id_procesoCargo`, `id_proceso`, `id_cargo`) VAL
 (6, 2, 9),
 (7, 1, 9),
 (8, 1, 10),
-(9, 2, 10);
+(9, 2, 10),
+(10, 11, 11);
 
 -- --------------------------------------------------------
 
@@ -364,9 +380,10 @@ INSERT INTO `tbl_procesos` (`id_proceso`, `id_zona`, `nobre`, `tareas`, `rutinar
 (5, 1, 'Descansar', '', 'SI', 0),
 (6, 7, 'Corredor', 'Producir como loco', 'SI', 0),
 (7, 2, '54ARSF', 'GFSGDFGS', 'SI', 0),
-(8, 2, 'Ultimo', 'Ultima prueba de este modulo', 'SI', 0),
+(8, 2, 'no ultimo', 'Ultima prueba de este modulo', 'SI', 0),
 (9, 2, 'Ultimo', 'Ultima prueba de este modulo', 'SI', 0),
-(10, 2, 'Otra ves ultimo', 'Nuevo intento por que hice una chambonada', 'SI', 0);
+(10, 2, 'Otra ves ultimo', 'Nuevo intento por que hice una chambonada', 'SI', 0),
+(11, 8, 'Desarrollar', 'otras', 'NO', 0);
 
 -- --------------------------------------------------------
 
@@ -384,9 +401,10 @@ CREATE TABLE `tbl_profesiones` (
 --
 
 INSERT INTO `tbl_profesiones` (`id_profesion`, `nombre`) VALUES
-(1, 'Medicos'),
+(1, 'Enfermero'),
 (2, 'Analista'),
-(3, 'Profesor');
+(3, 'Profesor'),
+(7, 'Ing Sistemas');
 
 -- --------------------------------------------------------
 
@@ -406,7 +424,8 @@ CREATE TABLE `tbl_zonas` (
 INSERT INTO `tbl_zonas` (`id_zona`, `nombre`) VALUES
 (1, 'planta'),
 (2, 'Terraza'),
-(7, 'Produccion');
+(7, 'Produccion'),
+(8, 'Oficina');
 
 --
 -- Índices para tablas volcadas
@@ -504,57 +523,57 @@ ALTER TABLE `tbl_zonas`
 -- AUTO_INCREMENT de la tabla `tbl_cargos`
 --
 ALTER TABLE `tbl_cargos`
-  MODIFY `id_cargo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id_cargo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT de la tabla `tbl_controles`
 --
 ALTER TABLE `tbl_controles`
-  MODIFY `id_control` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_control` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT de la tabla `tbl_criterios_controles`
 --
 ALTER TABLE `tbl_criterios_controles`
-  MODIFY `id_criterio_control` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_criterio_control` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT de la tabla `tbl_evaluacionriesgos`
 --
 ALTER TABLE `tbl_evaluacionriesgos`
-  MODIFY `id_riesgos` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_riesgos` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT de la tabla `tbl_medidasintervencion`
 --
 ALTER TABLE `tbl_medidasintervencion`
-  MODIFY `idMedidasIntervencion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `idMedidasIntervencion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT de la tabla `tbl_peligros`
 --
 ALTER TABLE `tbl_peligros`
-  MODIFY `id_peligro` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_peligro` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT de la tabla `tbl_peligrosprocesos`
 --
 ALTER TABLE `tbl_peligrosprocesos`
-  MODIFY `id_peligroProceso` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_peligroProceso` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT de la tabla `tbl_procesocargo`
 --
 ALTER TABLE `tbl_procesocargo`
-  MODIFY `id_procesoCargo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id_procesoCargo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT de la tabla `tbl_procesos`
 --
 ALTER TABLE `tbl_procesos`
-  MODIFY `id_proceso` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id_proceso` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT de la tabla `tbl_profesiones`
 --
 ALTER TABLE `tbl_profesiones`
-  MODIFY `id_profesion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_profesion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT de la tabla `tbl_zonas`
 --
 ALTER TABLE `tbl_zonas`
-  MODIFY `id_zona` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_zona` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- Restricciones para tablas volcadas
 --

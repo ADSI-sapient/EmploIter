@@ -55,4 +55,10 @@
 			$this->_modelProceso->__SET("zona", $_POST["nomZona"]);
 			echo json_encode($this->_modelProceso->regZona());
 		}
+
+		public function listarProcesos()
+		{
+			$this->_modelProceso->__SET("id_cargo", $_POST["idcargo"]);
+			echo json_encode($this->_modelProceso->listarProcesosConsEm());
+		}
 	}

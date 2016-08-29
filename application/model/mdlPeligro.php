@@ -30,6 +30,8 @@
 		private $descPel;
 		private $efectosPel;
 
+		private $id_proceso;
+
 		function __construct($db)
 		{
 			$this->_db = $db;
@@ -120,5 +122,14 @@
 			$query->bindParam(4, $this->descPel);
 			$query->bindParam(5, $this->efectosPel);
 			return $query->execute();
+		}
+
+		public function consPeligros()
+		{
+			$sql = "CALL SP_ConsPeligros(?)";
+			$query = $this->_db->prepare($sql);
+			$query->bindParam(1, $this->id_proceso);
+			$query->execute();
+			return $query->fetchAll();
 		}
 	}

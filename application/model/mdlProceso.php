@@ -10,6 +10,7 @@
 		private $id_proceso;
 		private $id_peligro;
 
+		private $id_cargo;
 
 		function __construct($db)
 		{
@@ -83,5 +84,14 @@
 			$query->bindParam(1, $this->id_proceso);
 			$query->bindParam(2, $this->id_peligro);
 			return $query->execute();
+		}
+
+		public function listarProcesosConsEm()
+		{
+			$sql = "CALL SP_ListarProcesos(?)";
+			$query = $this->_db->prepare($sql);
+			$query->bindParam(1, $this->id_cargo);
+			$query->execute();
+			return $query->fetchAll();
 		}
 	}

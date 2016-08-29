@@ -103,21 +103,21 @@
                     <thead>
                         <div id="titleMod"></div>
                         <tr>
-                            <th style="text-align: center;" colspan="18">Proceso</th>
+                            <th id="proceso" style="text-align: center;" colspan="18">Proceso</th>
                         </tr>
                         <tr>
-                            <th colspan="18">Tareas: </th>
+                            <th id="tareas" colspan="18">Tareas: </th>
                         </tr>
                         <tr>
-                            <th colspan="5">Rutinaria: </th>
-                            <th colspan="13">Zona: </th>
+                            <th id="rutina" colspan="5">Rutinaria: </th>
+                            <th id="zona" colspan="13">Zona: </th>
                         </tr>
                         <tr>
-                            <th colspan="3">Peligro</th>
-                            <th colspan="8">Evaluación de riesgo</th>
-                            <th colspan="3">Controles existentes</th>
-                            <th colspan="2">Criterios para establecer controles</th>
-                            <th colspan="2">Medidas de intervención</th>
+                            <th id="peligro" colspan="3">Peligro</th>
+                            <th id="eval_riesg" colspan="8">Evaluación de riesgo</th>
+                            <th id="contrl_exist" colspan="3">Controles existentes</th>
+                            <th id="criter_control" colspan="2">Criterios para establecer controles</th>
+                            <th id="med_interv" colspan="2">Medidas de intervención</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -125,7 +125,6 @@
                             <td>Descripción</td>
                             <td>Clasificación</td>
                             <td>Efectos posibles</td>
-
                             <td>ND</td>
                             <td>NE</td>
                             <td>NP</td>
@@ -134,17 +133,13 @@
                             <td>NR</td>
                             <td>Interp</td>
                             <td>Aceptabilidad del riesgo</td>
-
                             <td>Fuente</td>
                             <td>Medio</td>
                             <td>Individuo</td>
-                            
                             <td>Peor consecuencia</td>
                             <td>Requisito legal asociado</td>
-
                             <td>Control ingenieria</td>
                             <td>Señalización</td>
-
                         </tr>
                     </tbody>
                 </table>

@@ -115,10 +115,40 @@ function registrarProfesion(){
 
 
 function consFichaRies(empleado, idCargo){
+	console.log(idCargo);
 	$("#titleMod").empty();
 	var emp = $(empleado).parent().parent();
 	var tituloModal = "<p><strong>Nombre:</strong> "+$(emp).find("td").eq(0).html()+
 	"  <br> <strong>Cargo:</strong> "+$(emp).find("td").eq(1).html()+
-	"  <br> <strong>CC:</strong> "+$(emp).find("td").eq(3).html()+"</p>"; 
+	"  <br> <strong>CC:</strong> "+$(emp).find("td").eq(3).html()+"</p>";
+
+	$.ajax({
+		type: 'POST',
+		dataType: 'json',
+		url: uri+'ctrProceso/listarProcesos',
+		data:{idcargo: idCargo}
+	}).done(function(resp){
+		console.log(resp);
+		if (resp) {
+			arrayProcesos = resp;
+			$("#proceso").html("Proceso: "+arrayProcesos[0]["nobre"]);
+			$("#tareas").html("Tareas: "+arrayProcesos[0]["tareas"]);
+			$("#rutina").html("Rutinaria: "+arrayProcesos[0]["rutinaria"]);
+			$("#zona").html("Zona: "+arrayProcesos[0]["zona"]);
+
+			$.ajax({
+				type: 'POST',
+				dataType: 'json',
+				url: uri+'ctrPeligro/consPeligros',
+				data:{id_proceso: arrayProcesos[0]["id_proceso"]}
+			}).done(function(respuesta){
+
+
+			});
+		}
+	});
+
+
 	$("#titleMod").append(tituloModal);
 }
+
