@@ -113,10 +113,10 @@ function registrarZona(){
 
 function asociarPeligro(peligros){
 	var peligro = $(peligros).parent().parent();
-	var boton = "<button type='button' class='btn btn-box-tool' onclick='$(this).parent().parent().remove(); cargMod2(this);'><i style='color: red;' class='fa fa-times'></i></button>"
+	var boton = "<button type='button' class='btn btn-box-tool' onclick='$(this).parent().parent().remove(); cargMod2(this);'><i style='color: red; font-size: 150%;' class='fa fa-times'></i></button>"
 	$(peligro).find("td").eq(5).html(boton);
 
-	$("#tableOcultaProces").removeAttr("style");
+	$("#tableOcultaProces").css("display", "");
 	$("#tbody-proceso").append(peligro);
 
 	$("#btnRegCargo").css("display", "");

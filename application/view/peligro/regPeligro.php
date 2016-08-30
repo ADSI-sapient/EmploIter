@@ -1,7 +1,7 @@
 <div id="page-wrapper" style="min-height: 292px;">
     <div class="row">
         <div class="col-lg-12">
-            <h1 class="page-header">Peligros</h1>
+          <h2 class="page-header"><i style="color: #F0E62B" class="fa fa-exclamation-triangle"></i></i>   Registrar Peligros</h2>
         </div>
         <!-- /.col-lg-12 -->
     </div>
@@ -10,7 +10,7 @@
       <form action="<?= URL; ?>ctrPeligro/regPeligro" method="POST">
         <div class="col-lg-12">
         <div class="col-lg-6">
-            <div class="panel panel-default">
+            <div class="panel panel-green">
                 <div class="panel-heading">
                   Peligro
                 </div>
@@ -33,7 +33,7 @@
             </div>
         </div>
         <div class="col-lg-6">
-            <div class="panel panel-default">
+            <div class="panel panel-green">
                 <div class="panel-heading">
                     Evaluación de riesgo
                 </div>
@@ -80,13 +80,13 @@
             </div>
         </div>
         <div class="col-lg-12">
-            <div class="panel panel-default">
+            <div class="panel panel-green">
                 <div class="panel-heading">
                     Controles existentes, criterios para establecerlos y medidas de intervención
                 </div>
                 <div class="panel-body">
                     <div class="col-lg-6">
-                      <div class="panel panel-default">
+                      <div class="panel panel-success">
                         <div class="panel-heading">
                              Controles existentes
                         </div>
@@ -107,7 +107,7 @@
                      </div> 
                    </div>
                    <div class="col-lg-6">
-                      <div class="panel panel-default">
+                      <div class="panel panel-success">
                         <div class="panel-heading">
                           Criterios para establecer
                           controles y medidas de intervención

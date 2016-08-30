@@ -10,10 +10,10 @@ function cargarRegCargo(){
 
 function asociarProceso(procesos){
 	var proces = $(procesos).parent().parent();
-	var boton = "<button type='button' class='btn btn-box-tool' onclick='$(this).parent().parent().remove(); cargMod(this);'><i style='color: red;' class='fa fa-times'></i></button>"
+	var boton = "<button type='button' class='btn btn-box-tool' onclick='$(this).parent().parent().remove(); cargMod(this);'><i style='font-size: 150%; color: red;' class='fa fa-times'></i></button>"
 	$(proces).find("td").eq(4).html(boton);
 
-	$("#di").removeAttr("style");
+	$("#di").css("display", "");
 	$("#tbody-cargo").append(proces);
 
 

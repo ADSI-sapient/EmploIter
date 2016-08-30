@@ -1,14 +1,14 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Listar Empleados</h1>
+                    <h2 class="page-header"><i style="color: #0000cc;" class="fa fa-users" aria-hidden="true"></i>   Listar Empleados</h2>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
             <!-- /.row -->
             <div class="row">
                 <div class="col-lg-12">
-                    <div class="panel panel-default">
+                    <div class="panel panel-primary">
                         <div class="panel-heading">
                             Empleados Registrados
                         </div>
@@ -97,53 +97,9 @@
         <div style="text-align: center;" class="modal-title"><strong>Ficha de riesgos</strong></div>
       </div>
       <div class="modal-body">
-        <div class="row col-sm-12">
-            <div style="font-size: 70%;" class="dataTable_wrapper">
-                <table width="100%" class="table table-striped table-bordered table-hover" id="">
-                    <thead>
-                        <div id="titleMod"></div>
-                        <tr>
-                            <th id="proceso" style="text-align: center;" colspan="18">Proceso</th>
-                        </tr>
-                        <tr>
-                            <th id="tareas" colspan="18">Tareas: </th>
-                        </tr>
-                        <tr>
-                            <th id="rutina" colspan="5">Rutinaria: </th>
-                            <th id="zona" colspan="13">Zona: </th>
-                        </tr>
-                        <tr>
-                            <th id="peligro" colspan="3">Peligro</th>
-                            <th id="eval_riesg" colspan="8">Evaluación de riesgo</th>
-                            <th id="contrl_exist" colspan="3">Controles existentes</th>
-                            <th id="criter_control" colspan="2">Criterios para establecer controles</th>
-                            <th id="med_interv" colspan="2">Medidas de intervención</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Descripción</td>
-                            <td>Clasificación</td>
-                            <td>Efectos posibles</td>
-                            <td>ND</td>
-                            <td>NE</td>
-                            <td>NP</td>
-                            <td>Interp</td>
-                            <td>NC</td>
-                            <td>NR</td>
-                            <td>Interp</td>
-                            <td>Aceptabilidad del riesgo</td>
-                            <td>Fuente</td>
-                            <td>Medio</td>
-                            <td>Individuo</td>
-                            <td>Peor consecuencia</td>
-                            <td>Requisito legal asociado</td>
-                            <td>Control ingenieria</td>
-                            <td>Señalización</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div> 
+        <div style="font-size: 70%;" id="titleMod"></div>
+        <div id="tableEmplMod" class="row col-sm-12">
+
         </div>
         <div class="row col-sm-12">
         </div>

@@ -115,12 +115,12 @@ function registrarProfesion(){
 
 
 function consFichaRies(empleado, idCargo){
-	console.log(idCargo);
 	$("#titleMod").empty();
 	var emp = $(empleado).parent().parent();
 	var tituloModal = "<p><strong>Nombre:</strong> "+$(emp).find("td").eq(0).html()+
 	"  <br> <strong>Cargo:</strong> "+$(emp).find("td").eq(1).html()+
 	"  <br> <strong>CC:</strong> "+$(emp).find("td").eq(3).html()+"</p>";
+	$("#titleMod").append(tituloModal);
 
 	$.ajax({
 		type: 'POST',
@@ -128,27 +128,48 @@ function consFichaRies(empleado, idCargo){
 		url: uri+'ctrProceso/listarProcesos',
 		data:{idcargo: idCargo}
 	}).done(function(resp){
-		console.log(resp);
 		if (resp) {
-			arrayProcesos = resp;
-			$("#proceso").html("Proceso: "+arrayProcesos[0]["nobre"]);
-			$("#tareas").html("Tareas: "+arrayProcesos[0]["tareas"]);
-			$("#rutina").html("Rutinaria: "+arrayProcesos[0]["rutinaria"]);
-			$("#zona").html("Zona: "+arrayProcesos[0]["zona"]);
+			var iterador = "";
+			for (j in resp) {
+			
+			$("#proceso").html("Proceso: "+resp[j]["nobre"]);
+			$("#tareas").html("Tareas: "+resp[j]["tareas"]);
+			$("#rutina").html("Rutinaria: "+resp[j]["rutinaria"]);
+			$("#zona").html("Zona: "+resp[j]["zona"]);
 
 			$.ajax({
 				type: 'POST',
 				dataType: 'json',
 				url: uri+'ctrPeligro/consPeligros',
-				data:{id_proceso: arrayProcesos[0]["id_proceso"]}
+				data:{id_proceso: resp[j]["id_proceso"]}
 			}).done(function(respuesta){
 
+				var tr = "";
+				for (i in respuesta) {
 
+					tr += "<tr><td>"+respuesta[i]["descripcion"]+"</td><td>"+respuesta[i]["clasificacion"]+"</td><td>"+respuesta[i]["efectos"]+"</td>"
+					tr += "<td>"+respuesta[i]["ND"]+"</td><td>"+respuesta[i]["NE"]+"</td><td>"+respuesta[i]["NP"]+"</td>"
+					tr += "<td>"+respuesta[i]["interp"]+"</td><td>"+respuesta[i]["NC"]+"</td><td>"+respuesta[i]["NR"]+"</td>"
+					tr += "<td>"+respuesta[i]["nivelRiesgo"]+"</td><td>"+respuesta[i]["valoracion"]+"</td><td>"+respuesta[i]["fuente"]+"</td>"
+					tr += "<td>"+respuesta[i]["medio"]+"</td><td>"+respuesta[i]["individuo"]+"</td><td>"+respuesta[i]["peorConsecuencia"]+"</td>"
+					tr += "<td>"+respuesta[i]["requisitoLegal"]+"</td><td>"+respuesta[i]["ctrIngenieria"]+"</td><td>"+respuesta[i]["descripcion"]+"</td></tr>";
+				}
+				
+				iterador++;
+				console.log(iterador);
+				$("#tableEmpOculta").prop("id", "tableEmpOculta"+iterador);
+				$("#tbodyTableEmp").prop("id", "tbodyTableEmp"+iterador);
+				$("#tbodyTableEmp"+iterador).append(tr);
+				
 			});
+				$("#tableEmplMod").append($("#tableEmpOculta"+iterador).html());
+	  			$("#tableEmpOculta").css("display", "");
 		}
+	  }
 	});
-
-
-	$("#titleMod").append(tituloModal);
+	
 }
+
+// $("#tableEmplMod").append($("#tableEmpOculta").html());
+// $("#tableEmpOculta").removeAttr("style");
 

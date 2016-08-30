@@ -1,14 +1,14 @@
     <div id="page-wrapper" style="min-height: 292px;">
       <div class="row">
         <div class="col-lg-12">
-          <h1 class="page-header">Procesos</h1>
+                    <h2 class="page-header"><i style="color: green;" class="fa fa-cogs"></i>   Procesos</h2>
         </div>
       </div>
       <div clas="row">
         <div class="col-lg-8">
-          <div class="panel panel-default">
+          <div class="panel panel-green">
             <div class="panel-heading">
-              <i class="fa fa-bar-chart-o fa-fw"></i> Area Chart Example
+              <i style="color: green;" class="fa fa-cogs"></i>
               <div class="pull-right">
                 <div class="btn-group">
                   <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
@@ -25,32 +25,30 @@
               </div>
             </div>
             <!-- /.panel-heading -->
-            <div class="panel-body">
-
-
-              <div>
-                <div class="row">
+            <div style="padding-right: 0;" class="panel-body">
+                <form action="<?= URL; ?>ctrProceso/registrarProceso" method="POST">
+                <div class="row col-lg-12">
                   <div class="col-lg-12" style="padding-left: 30%">
-                    <h3 style="font-weight: bold; margin-bottom: 5%; margin-top: 0;">Registrar Proceso</h3>
+                          <h3 style="font-weight: bold; margin-bottom: 5%; margin-top: 0;">Registrar Proceso</h3>
                   </div>
                 </div>
-                <form action="<?= URL; ?>ctrProceso/registrarProceso" method="POST">
-                  <div>
-                    <div style="margin-top: 3%; margin-bottom: 3%" class="row col-sm-12">
-                      <div class="form-group">
-                        <div class="col-sm-10">
-                          <label>Nombre</label>
+                     <div style="margin-right: 0; margin-bottom: 3%;" class="row col-sm-12">
+                        <div class="col-sm-9">
+                          <label>Nombre: </label>
                           <input class="form-control" type="textarea" name="nomProces">
                         </div>
-                        <div style="margin-top: 3%" class="col-sm-2">
-                          <button data-toggle="modal" data-target="#asocPeligro"  type="button" class="btn btn-box-tool"><i style="color: green; font-size: 200%;" class="fa fa-cogs" aria-hidden="true"></i></button>
-                        </div> 
-                      </div>
+                        <div class="col-sm-3">
+                          <label>¿Rutinario?</label> 
+                          <select name="rutina" class="form-control">
+                            <option>SI</option>
+                            <option>NO</option>
+                          </select>
+                        </div>
+                        
                     </div>
-                    <div style="padding-right: 0;" class="row col-sm-12">
-                      <div class="form-group">
+                    <div class="row col-sm-12">
                         <div class="col-sm-6">
-                          <label>   Zona</label> 
+                          <label>   Zona: </label> 
                           <div class="input-group"> 
                             <select name="zona" required="" id="selectZona" class="form-control">
                             </select>
@@ -59,58 +57,51 @@
                             </div>
                            </div> 
                         </div> 
-                        <div class="col-sm-5">
-                          <label>¿Rutinario?</label> 
-                          <select name="rutina" class="form-control">
-                            <option>SI</option>
-                            <option>NO</option>
-                          </select>
-                        </div>
-                      </div>
+                        <div  style="margin-top: 4%; text-align: right;" class="col-sm-6">
+                          <button  data-toggle="modal" data-target="#asocPeligro"  type="button" class="btn btn-box-tool"><i style="font-size: 200%; color: #F0E62B;" class="fa fa-exclamation-triangle"></i></button>
+                        </div> 
                     </div>
                     <div style="margin-top: 3%; margin-bottom: 3%" class="row col-sm-12">
-                      <div class="form-group">
                         <div class="col-sm-12">
-                          <label>Tareas</label>
+                          <label>Tareas: </label>
                           <textarea id="textAreaProc" class="form-control"></textarea>
                           <input id="inpText" type="hidden" type="text" name="txtArea">
                         </div>
-                      </div>
                     </div>
 
-                    <div style="margin-left: 1%;" class="row col-sm-12">
+                    <div class="row col-sm-12">
+                    <div class="col-sm-12">
                       <div id="tableOcultaProces" style="display: none;" class="dataTable_wrapper table-responsive">
-                        <table width="100%" class="table table-striped table-hover">
+                        <table class="table table-striped table-bordered table-hover">
                           <thead>
                             <tr>
+                              <th style="text-align: center;"  colspan="5">PELIGROS</th>
+                            </tr>
+                            <tr>
                               <th style="display: none;"></th>
-                              <th>Número</th>
+                              <th>#</th>
                               <th>Descripción</th>
                               <th>Clasificación</th>
                               <th>Nivel de riesgo</th>
-                              <th>Agregar</th>
+                              <th style="text-align: center;">Quitar</th>
                             </tr>
                           </thead>
                           <tbody id="tbody-proceso">
                           </tbody>
                         </table>
                       </div>
+                      </div>
                     </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-sm-12">
+                    <div style="border-top: 1px solid; border-color: #D8D8D8;" class="row col-sm-12">
                       <div class="col-sm-9">
                         <span><h6 id="spanRed" style="color: red;">Debes asociar peligros</h6></span>
                       </div>
-                      <div class="col-sm-3">
+                      <div style="text-align: right; margin-top: 2%; " class="col-sm-3">
                         <input id="inpPeligro" type="hidden" name="peligros[]">
                         <button onclick="arrayPeligro();" id="btnRegCargo" name="regProc" type="submit" class="btn btn-primary">Registrar</button>
                       </div>
                     </div>
-                  </div>
                 </form>
-              </div>
-
             </div>
             <!-- /.panel-body -->
           </div>
@@ -244,19 +235,22 @@
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-            <h4 class="modal-title"><b>Peligros para asociar</b></h4>
+            <h4 style="text-align: center;" class="modal-title"><b>Peligros para asociar</b></h4>
           </div>
           <div class="modal-body">
             <div class="table-responsive">
-              <table class="table table-hover" style="margin-top: 2%;">
+              <table class="table table-striped table-bordered table-hover" style="margin-top: 2%;">
                 <thead>
+                  <tr>
+                    <th style="text-align: center;" colspan="5">PELIGROS</th>
+                  </tr>
                   <tr class="active">
                     <th style="display: none;"></th>
-                    <th>Número</th>
+                    <th>#</th>
                     <th>Descripción</th>
                     <th>Clasificación</th>
                     <th>Nivel de riesgo</th>
-                    <th>Agregar</th>
+                    <th style="text-align: center;">Agregar</th>
                   </tr>
                 </thead>
                 <tbody id="tbody-modPeligro">
@@ -267,9 +261,9 @@
                       <td><?= $cont += 1;?></td>
                       <td><?= $peligro["descripcion"];?></td>
                       <td><?= $peligro["clasificacion"];?></td>
-                      <td><?= $peligro["riesgo"];?></td>
-                      <td>
-                        <button id="btn<?= $peligro['id_peligro'];?>" type="button" class="btn btn-box-tool" onclick="asociarPeligro(this)"><i class="fa fa-plus"></i></button>
+                      <td style="text-align: center;"><?= $peligro["riesgo"];?></td>
+                      <td style="text-align: center;">
+                        <button id="btn<?= $peligro['id_peligro'];?>" type="button" class="btn btn-box-tool" onclick="asociarPeligro(this)"><i style="color: blue;" class="fa fa-plus"></i></button>
                       </td>
                     </tr>
                   <?php endforeach ?>

@@ -1,14 +1,14 @@
     <div id="page-wrapper" style="min-height: 292px;">
       <div class="row">
         <div class="col-lg-12">
-          <h1 class="page-header">Cargos</h1>
+          <h2 class="page-header"><i style="color: green;" class="fa fa-user-plus"></i>   Cargos</h2>
         </div>
       </div>
       <div clas="row">
         <div class="col-lg-8">
-          <div class="panel panel-default">
+          <div class="panel panel-green">
             <div class="panel-heading">
-              <i class="fa fa-bar-chart-o fa-fw"></i> Area Chart Example
+              <i style="color: green;" class="fa fa-user-plus"></i> 
               <div class="pull-right">
                 <div class="btn-group">
                   <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
@@ -25,7 +25,7 @@
               </div>
             </div>
             <!-- /.panel-heading -->
-            <div class="panel-body" id="espacioParaCargo">
+            <div style="padding-right: 0;" class="panel-body" id="espacioParaCargo">
 
 
             </div>
@@ -106,18 +106,21 @@
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-            <h4 class="modal-title"><b>Procesos para asociar</b></h4>
+            <h4 style="text-align: center;" class="modal-title"><b>Procesos para asociar</b></h4>
           </div>
           <div class="modal-body">
               <div class="table-responsive">
-                <table class="table table-hover" style="margin-top: 2%;">
+                <table class="table table-striped table-bordered table-hover" style="margin-top: 2%;">
                   <thead>
+                    <tr>
+                      <th style="text-align: center;"  colspan="4">PROCESOS</th>
+                    </tr>
                     <tr class="active">
                       <th style="display: none;"></th>
-                      <th>Número</th>
+                      <th>#</th>
                       <th>Nombre</th>
                       <th>zona</th>
-                      <th>Agregar</th>
+                      <th style="text-align: center;">Agregar</th>
                     </tr>
                   </thead>
                   <tbody id="tbody-modProces">
@@ -128,8 +131,8 @@
                           <td><?= $cont += 1;?></td>
                           <td><?= $proceso["nobre"];?></td>
                           <td><?= $proceso["zona"];?></td>
-                          <td>
-                            <button id="btn<?= $proceso['id_proceso'];?>" type="button" class="btn btn-box-tool" onclick="asociarProceso(this)"><i class="fa fa-plus"></i></button>
+                          <td style="text-align: center;">
+                            <button id="btn<?= $proceso['id_proceso'];?>" type="button" class="btn btn-box-tool" onclick="asociarProceso(this)"><i style="color: blue;" class="fa fa-plus"></i></button>
                           </td>
                       </tr>
                     <?php endforeach ?>

@@ -37,6 +37,7 @@
 
 
     <?php require APP.'view/Cargo/contentBox.php';?>
+    <?php require APP.'view/empleado/tablesEmpleado.php';?>
     <script src="<?php echo URL; ?>js/empleado.js"></script>
     <script src="<?php echo URL; ?>js/cargo.js"></script>
     <script src="<?php echo URL; ?>js/proceso.js"></script>
