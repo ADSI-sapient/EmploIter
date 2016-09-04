@@ -15,6 +15,8 @@
 		private $diasInc;
 		private $valInc;
 		private $descripcion;
+
+		private $idIncapacidad;
 		
 		function __construct($db)
 		{
@@ -57,6 +59,22 @@
 			$query->bindParam(7, $this->diasInc);
 			$query->bindParam(8, $this->valInc);
 			$query->bindParam(9, $this->descripcion);
+			return $query->execute();
+		}
+
+		public function editIncapacidad(){
+			$sql = "CALL SP_ModificarIncapacidad(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+			$query = $this->_db->prepare($sql);
+			$query->bindParam(1, $this->idEmpleado);
+			$query->bindParam(2, $this->idEnfermedad);
+			$query->bindParam(3, $this->idAccidente);
+			$query->bindParam(4, $this->razonInc);
+			$query->bindParam(5, $this->fechaInicio);
+			$query->bindParam(6, $this->fechaFin);
+			$query->bindParam(7, $this->diasInc);
+			$query->bindParam(8, $this->valInc);
+			$query->bindParam(9, $this->descripcion);
+			$query->bindParam(10, $this->idIncapacidad);
 			return $query->execute();
 		}
 

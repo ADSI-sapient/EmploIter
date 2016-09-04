@@ -61,7 +61,7 @@
                       </button>
                     </td>
                     <td style="text-align: center;">
-                      <button onclick="borrarEmpleado(<?= $empleado['documento'] ?>);" class="btn btn-box-tool">
+                      <button onclick="borrarEmpleado('<?= $empleado['documento'] ?>');" class="btn btn-box-tool">
                         <i style="color: red; font-size: 150%;" class="fa fa-times"></i>
                       </button>
                     </td>

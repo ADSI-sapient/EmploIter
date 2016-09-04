@@ -299,7 +299,7 @@
                                         <a class="active" href="<?= URL ?>ctrPeligro/regPeligro">Registrar Peligro</a>
                                     </li>
                                     <li>
-                                        <a href="<?= URL ?>">Listar Peligros</a>
+                                        <a href="<?= URL ?>ctrPeligro/listarPeligros">Listar Peligros</a>
                                     </li>
                                 </ul>
                                 <!-- /.nav-second-level -->

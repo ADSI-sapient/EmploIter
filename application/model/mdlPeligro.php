@@ -32,6 +32,8 @@
 
 		private $id_proceso;
 
+		private $idPeligro;
+
 		function __construct($db)
 		{
 			$this->_db = $db;
@@ -43,13 +45,6 @@
 
 		function __SET($atributo, $valor){
 			$this->$atributo = $valor;
-		}
-
-		function listarPeligros(){
-			$sql = "CALL SP_ListPeligros";
-			$query = $this->_db->prepare($sql);
-			$query->execute();
-			return $query->fetchAll();
 		}
 
 		function regiMedidasIntervencion(){
@@ -124,12 +119,17 @@
 			return $query->execute();
 		}
 
-		// public function consPeligros()
-		// {
-		// 	$sql = "CALL SP_ConsPeligros(?)";
-		// 	$query = $this->_db->prepare($sql);
-		// 	$query->bindParam(1, $this->id_proceso);
-		// 	$query->execute();
-		// 	return $query->fetchAll();
-		// }
+		public function listarPeligros(){
+			$sql = "CALL SP_ListarPeligros()";
+			$query = $this->_db->prepare($sql);
+			$query->execute();
+			return $query->fetchAll();
+		}
+
+		public function borrarPeligro(){
+			$sql = "CALL SP_BorrarPeligro(?)";
+			$query = $this->_db->prepare($sql);
+			$query->bindParam(1, $this->idPeligro);
+			return $query->execute();
+		}
 	}

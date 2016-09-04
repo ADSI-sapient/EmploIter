@@ -45,7 +45,6 @@ $("#grupEnf").on("change", function(){
 	});
 });
 
-
 function selectEmpl(){
 	var cedEmp = $("#selEmp").val();
 	if (cedEmp != ""){
@@ -62,7 +61,6 @@ function selectEmpl(){
 		salario = 0;
 		calcValorIncapacidad();
 	}
-
 }
 
 $("#diasInc").on("keyup change", function(){
@@ -91,6 +89,7 @@ $("#claseAccident").on("change", function(){
 function asigRegInc(){
 	$("#regIncap").removeAttr("style");
 	$("#lisIncapacidades").css("display", "none");
+	selectEmpl();
 }
 
 function asigLisInc(){
@@ -130,26 +129,64 @@ function consIncap(inc){
 }
 
 
-function detalleIncapacidad(inc){
-	if (idAccidente != "null") {
+function enviarDatoEditInc(inc, cedEmp, idInc){
+	var incapacidad = $(inc).parent().parent();
+	$("#tipoIncEdit").val($(incapacidad).find("td").eq(5).html());
+	$("#grupEnfEdit").val($(incapacidad).find("td").eq(1).html());
+	$("#claseAccidentEdit").val($(incapacidad).find("td").eq(2).html());
+	$("#fechaInicioEditInc").val($(incapacidad).find("td").eq(6).html());
+	$("#fechaFinEditInc").val($(incapacidad).find("td").eq(7).html());
+	$("#diasIncEdit").val($(incapacidad).find("td").eq(8).html());
+	$("#valIncEdit").val($(incapacidad).find("td").eq(9).html());
+	$("#textAreaProcEdit").val($(incapacidad).find("td").eq(0).html());
+	$("#incEmplEdit").val(cedEmp);
+
+	$("#idIncapacidad").val(idInc);
+
+	selecRazonInc();
+	selectEmplEdit();
+}
+
+$("#tipoIncEdit").on("change", function(){
+	selecRazonInc();
+});
+
+function selecRazonInc(){
+	if ($("#tipoIncEdit").val() == "Accidente de trabajo") {
+		$("#grupEnfEdit").attr("disabled", "");
+		$("#grupEnfEdit").val("");
+		$("#claseAccidentEdit").removeAttr("disabled");
+	} else if ($("#tipoIncEdit").val() == "Enfermedad laboral") {
+		$("#claseAccidentEdit").attr("disabled", "");
+		$("#claseAccidentEdit").val("");
+		$("#grupEnfEdit").removeAttr("disabled");
+	} else{
+		$("#claseAccidentEdit").attr("disabled", "");
+		$("#claseAccidentEdit").val("");
+		$("#grupEnfEdit").attr("disabled", "");
+		$("#grupEnfEdit").val("");
+	}
+}
+
+$("#diasIncEdit").on("change", function(){
+	var salDiario = parseInt(salario/30);
+	$("#valIncEdit").val(salDiario * $("#diasIncEdit").val());
+});
+
+function selectEmplEdit(){
+	var cedEmp = $("#incEmplEdit").val();
+	if (cedEmp != ""){
 		$.ajax({
-			type: 'POST',
 			dataType: 'json',
-			url: uri+'ctrIncapacidad/consAccidente',
-			data: {idAccidente: idAccidente}
-		}).done(function(res){
-			$("#accInca").val(res["causa"]);
-			$("#enfInca").val("");
-		});
+			type: 'POST',
+			url: uri+"ctrIncapacidad/consEmpleado",
+			data: {cedEmp: cedEmp}
+		}).done(function(emp){
+			salario = emp["salario"];
+			calcValorIncapacidad();
+		});		
 	}else{
-		$.ajax({
-			type: 'POST',
-			dataType: 'json',
-			url: uri+'ctrIncapacidad/consEnfermedad',
-			data: {idEnfermedad: idEnfermedad}
-		}).done(function(res){
-			$("#enfInca").val("Grupo: " + res["grupo"]);
-			$("#accInca").val("");
-		});
+		salario = 0;
+		calcValorIncapacidad();
 	}
 }
