@@ -12,6 +12,8 @@ class mdlEmpleado
     private $direccion;
 
     private $profesion;
+
+    private $cedEmp;
     
     function __construct($db)
     {
@@ -44,6 +46,19 @@ class mdlEmpleado
         $query->bindParam(7, $this->telefono);
         $query->execute();
         return $query;
+    }
+
+    public function modificarEmpleado(){
+        $sql = "CALL SP_ModEmpleado(?,?,?,?,?,?,?)";
+        $query = $this->db->prepare($sql);
+        $query->bindParam(1, $this->documento);
+        $query->bindParam(2, $this->id_cargo);
+        $query->bindParam(3, $this->id_profesion);
+        $query->bindParam(4, $this->nombre);
+        $query->bindParam(5, $this->apellido);
+        $query->bindParam(6, $this->direccion);
+        $query->bindParam(7, $this->telefono);
+        return $query->execute();
     }
 
     public function listarEmpleados(){
@@ -80,6 +95,21 @@ class mdlEmpleado
         $query = $this->db->prepare($sql);
         $query->bindParam(1, $this->id_profesion);
         $query->bindParam(2, $this->profesion);
+        return $query->execute();
+    }
+
+    public function consEmpleado(){
+        $sql = "CALL SP_ConsEmpleado(?)";
+        $query = $this->db->prepare($sql);
+        $query->bindParam(1, $this->cedEmp);
+        $query->execute();
+        return $query->fetch();
+    }
+
+    public function borrarEmpleado(){
+        $sql = "CALL SP_BorrarEmpleado(?)";
+        $query = $this->db->prepare($sql);
+        $query->bindParam(1, $this->documento);
         return $query->execute();
     }
 }

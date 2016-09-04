@@ -30,6 +30,7 @@
 			}
 
 			$peligros = $this->_modelPeligro->listarPeligros();
+			$procesos = $this->_modelProceso->listProcesos();
 
 			include APP.'view/_templates/header.php';
 			include APP.'view/procesos/proceso.php';
@@ -56,9 +57,15 @@
 			echo json_encode($this->_modelProceso->regZona());
 		}
 
-		public function listarProcesos()
+		public function consProcesos()
 		{
 			$this->_modelProceso->__SET("id_cargo", $_POST["idcargo"]);
 			echo json_encode($this->_modelProceso->listarProcesosConsEm());
+		}
+
+		public function borrarProceso(){
+			$this->_modelProceso->__SET("id_proceso", $_POST["id_proceso"]);
+			$this->_modelProceso->borrarProcesoPeligro();
+			echo json_encode($this->_modelProceso->borrarProceso());
 		}
 	}

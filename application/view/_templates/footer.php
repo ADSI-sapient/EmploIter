@@ -11,7 +11,8 @@
     </script>
 
     <!-- our JavaScript -->
-    <script src="<?php echo URL; ?>js/application.js"></script>
+
+
 
     <!-- jQuery -->
     <script src="<?php echo URL; ?>bower_components/jquery/dist/jquery.min.js"></script>
@@ -30,17 +31,23 @@
     <!-- Custom Theme JavaScript -->
     <script src="<?php echo URL; ?>js/metisMenu/metisMenu.js"></script>
     <script src="<?php echo URL; ?>js/sb-admin-2.js"></script>
-    <script src="<?php echo URL; ?>js/select2.full.min.js"></script>
     <script type="text/javascript">
         var uri = "<?= URL;?>";
     </script>
 
+        <script src="<?php echo URL; ?>js/application.js"></script>
+    <script src="<?= URL; ?>js/daterangepicker.js"></script>
+    <script src="<?= URL; ?>js/bootstrap-datepicker.js"></script>
+    <script src="<?= URL; ?>js/bootstrap-datepicker.es.js"></script>
+    <script src="<?= URL; ?>js/moment.min.js"></script>
+    <script src="<?php echo URL; ?>js/select2.full.min.js"></script>
 
     <?php require APP.'view/Cargo/contentBox.php';?>
     <?php require APP.'view/empleado/tablesEmpleado.php';?>
     <script src="<?php echo URL; ?>js/empleado.js"></script>
     <script src="<?php echo URL; ?>js/cargo.js"></script>
     <script src="<?php echo URL; ?>js/proceso.js"></script>
+    <script src="<?php echo URL; ?>js/incapacidad.js"></script>
 
 
     <!-- Page-Level Demo Scripts - Tables - Use for reference -->

@@ -125,7 +125,7 @@ function asociarPeligro(peligros){
 
 function cargMod2(peligros){
 	var peligro = $(peligros).parent().parent();
-	var boton = "<button id='' type='button' class='btn btn-box-tool' onclick='asociarPeligro(this)'><i class='fa fa-plus'></i></button>";
+	var boton = "<button id='' type='button' class='btn btn-box-tool' onclick='asociarPeligro(this)'><i style='color: blue;' class='fa fa-plus'></i></button>";
 	$(peligro).find("td").eq(5).html(boton);
 	$("#tbody-modPeligro").append(peligro);
 }
@@ -138,6 +138,40 @@ function arrayPeligro(){
 
 	$("#inpPeligro").val(array);
 	$("#inpText").val($("#textAreaProc").val());
+}
+
+function enviarProc(){
+	var cantFilas = $("#tbody-proceso tr").size();
+	if (cantFilas <= 0) {
+		alert("Debe asociar peligros al proceso");
+		return false;
+	}else{
+		return true;
+	}
+}
+
+
+function agreRegProc(){
+	$("#regProc").removeAttr("style");
+	$("#lisProc").css("display", "none");
+}
+
+function agreLisProc(){
+	$("#lisProc").removeAttr("style");
+	$("#regProc").css("display", "none");
+}
+
+function borrarProceso(idProceso){
+	$.ajax({
+		dataType: 'json',
+		type: 'POST',
+		url: uri+'ctrProceso/borrarProceso',
+		data: {id_proceso: idProceso}
+	}).done(function(resp){
+		location.href = uri+'ctrProceso/registrarProceso';
+	}).fail(function(){
+		alert("Hay cargos asociados al proceso");
+	});
 }
 
 

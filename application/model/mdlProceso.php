@@ -88,10 +88,24 @@
 
 		public function listarProcesosConsEm()
 		{
-			$sql = "CALL SP_ListarProcesos(?)";
+			$sql = "CALL SP_ConsProcesos(?)";
 			$query = $this->_db->prepare($sql);
 			$query->bindParam(1, $this->id_cargo);
 			$query->execute();
 			return $query->fetchAll();
+		}
+
+		public function borrarProcesoPeligro(){
+			$sql = "CALL SP_BorrarProcesoPeligro(?)";
+			$query = $this->_db->prepare($sql);
+			$query->bindParam(1, $this->id_proceso);
+			return $query->execute();
+		}
+
+		public function borrarProceso(){
+			$sql = "CALL SP_BorrarProceso(?)";
+			$query = $this->_db->prepare($sql);
+			$query->bindParam(1, $this->id_proceso);
+			return $query->execute();
 		}
 	}

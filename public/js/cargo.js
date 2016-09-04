@@ -3,8 +3,15 @@ $(window).load(function(){
 });
 
 function cargarRegCargo(){
+	$("#listCargo").css("display", "none");
 	$("#espacioParaCargo").empty();
 	$("#espacioParaCargo").append($("#regCargo").html());
+}
+
+function cargarListCargos(){
+	$("#regCargo").css("display", "none");
+	$("#espacioParaCargo").empty();
+	$("#espacioParaCargo").append($("#listCargo").html());
 }
 
 
@@ -23,7 +30,7 @@ function asociarProceso(procesos){
 
 function cargMod(procesos){
 	var proces = $(procesos).parent().parent();
-	var boton = "<button id='' type='button' class='btn btn-box-tool' onclick='asociarProceso(this)'><i class='fa fa-plus'></i></button>";
+	var boton = "<button id='' type='button' class='btn btn-box-tool' onclick='asociarProceso(this)'><i style='color: blue;' class='fa fa-plus'></i></button>";
 	$(proces).find("td").eq(4).html(boton);
 	$("#tbody-modProces").append(proces);
 }
@@ -36,3 +43,41 @@ function arrayProces(){
 
 	$("#inpProces").val(array);
 }
+
+function seleRiesgo(option){
+  var idRiesgo = $(option).val();
+  $.ajax({
+  	dataType: 'json',
+  	type: 'POST',
+  	url: uri+'ctrCargo/consRiesgo',
+  	data: {idRiesgo: idRiesgo}
+  }).done(function (resp){
+  	$("#inpTarifa").val(resp["tarifa"]);
+  	$("#textAct").val(resp["actividades"]);
+  })
+}
+
+function enviar(){
+	var elemTabla = $("#tbody-cargo tr").size();
+	if (elemTabla <= 0) {
+		alert("deben haber elementos en la tabla");
+			return false;
+	}else{
+		return true;
+	}
+}
+
+function borrarCargo(idCargo){
+	$.ajax({
+		dataType: 'json',
+		type: 'POST',
+		url: uri+'ctrCargo/borrarCargo',
+		data: {id_cargo: idCargo}
+	}).done(function(resp){
+		location.href = uri+'ctrCargo/registrarCargo';
+	}).fail(function(){
+		alert("No se puede borrar un empleado tiene asociado este cargo");
+	});
+}
+	
+

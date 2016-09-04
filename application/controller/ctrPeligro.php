@@ -53,9 +53,9 @@
 			include APP.'view/_templates/footer.php';
 		}
 
-		public function consPeligros()
-		{
-			$this->_modelPeligro->__SET("id_proceso", $_POST["id_proceso"]);
-			echo json_encode($this->_modelPeligro->consPeligros());
-		}
+		// public function consPeligros()
+		// {
+		// 	$this->_modelPeligro->__SET("id_proceso", $_POST["id_proceso"]);
+		// 	echo json_encode($this->_modelPeligro->consPeligros());
+		// }
 	}

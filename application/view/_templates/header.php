@@ -21,6 +21,9 @@
     <link href="<?php echo URL; ?>font-awesome-4.6.3/css/font-awesome.css" rel="stylesheet">
 
     <link href="<?php echo URL; ?>css/select2.min.css" rel="stylesheet">
+    <link href="<?php echo URL; ?>css/datepicker.css" rel="stylesheet">
+    <link rel="stylesheet" href="<?= URL; ?>css/daterangepicker-bs3.css">
+    <link rel="stylesheet" href="<?= URL; ?>css/datepicker3.css">
 
     <!-- Custom Fonts -->
     <link href="<?php echo URL; ?>bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -300,6 +303,9 @@
                                     </li>
                                 </ul>
                                 <!-- /.nav-second-level -->
+                            </li>
+                            <li>
+                                <a class="active" href="<?= URL ?>ctrIncapacidad/incapacidad"><i class="fa fa-stethoscope"></i>  Incapacidades</a>
                             </li>
                         </ul>
                     </div>

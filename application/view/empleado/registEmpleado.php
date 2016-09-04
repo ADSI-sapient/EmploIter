@@ -39,9 +39,9 @@
                     <option value="<?= $profesion["id_profesion"]?>"><?= $profesion["nombre"]?></option> 
                   <?php endforeach ?> -->
                 </select>
-                <div data-toggle="modal" onclick="listTableProf();" data-target="#modalRegProfesion" class="input-group-addon">
-                <i class="fa fa-plus-circle fa-lg" arial-hidden="true"></i>
-                </div>
+                <span data-toggle="modal" onclick="listTableProf();" data-target="#modalRegProfesion" class="input-group-btn">
+                <button style="background-color: #D8D8D8;" class="btn btn-default" type="button"><i class="fa fa-search" arial-hidden="true"></i></button>
+                </span>
               </div>
             </div>
 

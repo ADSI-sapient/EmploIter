@@ -124,12 +124,12 @@
 			return $query->execute();
 		}
 
-		public function consPeligros()
-		{
-			$sql = "CALL SP_ConsPeligros(?)";
-			$query = $this->_db->prepare($sql);
-			$query->bindParam(1, $this->id_proceso);
-			$query->execute();
-			return $query->fetchAll();
-		}
+		// public function consPeligros()
+		// {
+		// 	$sql = "CALL SP_ConsPeligros(?)";
+		// 	$query = $this->_db->prepare($sql);
+		// 	$query->bindParam(1, $this->id_proceso);
+		// 	$query->execute();
+		// 	return $query->fetchAll();
+		// }
 	}

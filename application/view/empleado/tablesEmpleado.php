@@ -1,4 +1,11 @@
-<div id="tableEmpOculta" style="display: none;">
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Factura</title>
+</head>
+<body id="bodyPdf">
+    <!-- <div style="font-size: 70%;" id="titlePdf"></div>
+        <div id="tableEmpOculta">
             <div style="font-size: 70%;" class="dataTable_wrapper">
                 <table width="100%" class="table table-striped table-bordered table-hover" id="">
                     <thead>
@@ -45,4 +52,12 @@
                     </tbody>
                 </table>
             </div> 
-</div>
+</div> -->
+</body>
+</html>
+
+
+
+
+
+

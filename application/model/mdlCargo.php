@@ -8,6 +8,8 @@
 		private $cargo;
     	private $salario;
 
+    	private $idRiesgo;
+
 		function __construct($db)
 		{
 			$this->_db = $db;
@@ -22,10 +24,11 @@
 		}
 
 		public function regCargo(){
-	        $sql = "CALL SP_RegistrarCargo(?, ?)";
+	        $sql = "CALL SP_RegistrarCargo(?, ?, ?)";
 	        $query = $this->_db->prepare($sql);
-	        $query->bindParam(1, $this->cargo);
-	        $query->bindParam(2, $this->salario);
+	        $query->bindParam(1, $this->idRiesgo);
+	        $query->bindParam(2, $this->cargo);
+	        $query->bindParam(3, $this->salario);
         	return $query->execute();
     	}
 
@@ -50,4 +53,34 @@
 	        $query->bindParam(2, $this->id_proceso);
         	return $query->execute();
     	}
+
+    	public function consRiesgo(){
+    		$sql = "CALL SP_ConsRiesgo(?)";
+	        $query = $this->_db->prepare($sql);
+	        $query->bindParam(1, $this->idRiesgo);
+        	$query->execute();
+        	return $query->fetch();
+    	}
+
+    	public function listCargos(){
+    		$sql = "CALL SP_ListCargos()";
+	        $query = $this->_db->prepare($sql);
+        	$query->execute();
+        	return $query->fetchAll();
+    	}
+
+    	public function borrarProcesoCargo(){
+    		$sql = "CALL SP_BorrarProcesoCargo(?)";
+    		$query = $this->_db->prepare($sql);
+	        $query->bindParam(1, $this->id_cargo);
+        	$query->execute();
+        	return $this->borrarCargo();
+    	}
+    	public function borrarCargo(){
+    		$sql = "CALL SP_BorrarCargo(?)";
+    		$query = $this->_db->prepare($sql);
+	        $query->bindParam(1, $this->id_cargo);
+        	return $query->execute();
+    	}
+
 	}

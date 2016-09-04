@@ -18,7 +18,7 @@
                   <ul class="dropdown-menu pull-right" role="menu">
                     <li><button onclick="cargarRegCargo()" class="btn btn-box-tool"> Registrar nuevo cargo </button>
                     </li>
-                    <li><button class="btn btn-box-tool"> Listar cargos existentes </button>
+                    <li><button onclick="cargarListCargos()" class="btn btn-box-tool"> Listar cargos existentes </button>
                     </li>
                   </ul>
                 </div>
