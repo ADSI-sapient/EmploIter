@@ -90,70 +90,7 @@
 
 
 
-    <div class="modal fade" tabindex="-1" role="dialog" id="modalRegProfesion">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h3 style="font-weight: bold; text-align: center;" class="modal-title">Registrar Profesión</h3>
-          </div>
-          <div class="modal-body">
-<!--             <form action="<?= URL; ?>ctrEmpleado/regProfesion" method="POST"> -->
-              <div class="row col-sm-12">
-                <div class="form-group col-sm-12">
-                  <div style="text-align:center;" class="col-sm-2">
-                    <i style="color: #00cc00; font-size: 300%;" class="fa fa-user-md" aria-hidden="true"></i>
-                  </div>
-                  <div class="col-sm-8">  
-                    <input placeholder="Ingrese profesión" type="text" id="txtProfesion" class="form-control" required="" style="border-radius:5px;">
-                  </div> 
-                  <div class="col-sm-2">
-                   <button onclick="registrarProfesion()" class="btn btn-primary">Registrar</button>
-                 </div> 
-               </div>
-             </div> 
-<!--            </form>   -->
-           <div class="row col-sm-12" style="margin-right: 0; padding-left: 8%">
-             <div class="dataTable_wrapper table-responsive">
-              <table width="100%" class="table table-striped table-hover" id="tblProfesion">
-                <thead>
-                  <tr>
-                    <th>Código</th>
-                    <th style="text-align: center;">Profesión</th>
-                    <th>Eliminar</th>
-                    <th>Modificar</th>
-                    <th>Guardar</th>
-                    <th style="display: none;"></th>
-                  </tr>
-                </thead>
-                <tbody id="tbody-profesion">
- <!--                  <?php $cont = 0; ?>
-                  <?php foreach ($profesiones as $profesion): ?>
-                    <tr>
-                      <td><?= $cont += 1;?></td>
-                      <td><?= $profesion["nombre"]; ?></td>
 
-                      <td style="text-align: center;"><button id='btnEditProf<?= $profesion["id_profesion"]?>' onclick="editarProfesion(this, <?= $profesion["id_profesion"]?>);" class="btn btn-box-tool"><i style="color: green;" class="fa fa-pencil-square-o" arial-hidden="true"></i></button></td>
-
-                      <td style="text-align: center;"><button onclick="borrarProfesion(<?= $profesion["id_profesion"]?>); $(this).parent().parent().remove();" data-dismiss="alert" class="btn btn-box-tool"><i style="color: red;" class="fa fa-times" arial-hidden="true"></i></button></td>
-
-                      <td style="text-align: center;"><button disabled="true" id='btnGuardarProf<?= $profesion["id_profesion"]?>' onclick="guardarCambiosProf(this, <?= $profesion["id_profesion"]?>);" type="button" class="btn btn-box-tool"><i class="fa fa-check" arial-hidden="true"></i></button></td>
-                      <td style="display: none;"><?= $profesion["id_profesion"]?></td>
-                    </tr>
-                  <?php endforeach ?> -->
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-        <div>
-          <div class="modal-footer" style="border-top:none; border-bottom:1px solid;">
-<!--             <button type="button" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
--->          </div>
-</div>
-</div><!-- /.modal-content -->
-</div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
 
 
 

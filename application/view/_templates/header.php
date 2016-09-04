@@ -59,196 +59,19 @@
                 <!-- /.navbar-header -->
 
                 <ul class="nav navbar-top-links navbar-right">
-                    <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                            <i class="fa fa-envelope fa-fw"></i>  <i class="fa fa-caret-down"></i>
-                        </a>
-                        <ul class="dropdown-menu dropdown-messages">
-                            <li>
-                                <a href="#">
-                                    <div>
-                                        <strong>John Smith</strong>
-                                        <span class="pull-right text-muted">
-                                            <em>Yesterday</em>
-                                        </span>
-                                    </div>
-                                    <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...</div>
-                                </a>
-                            </li>
-                            <li class="divider"></li>
-                            <li>
-                                <a href="#">
-                                    <div>
-                                        <strong>John Smith</strong>
-                                        <span class="pull-right text-muted">
-                                            <em>Yesterday</em>
-                                        </span>
-                                    </div>
-                                    <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...</div>
-                                </a>
-                            </li>
-                            <li class="divider"></li>
-                            <li>
-                                <a href="#">
-                                    <div>
-                                        <strong>John Smith</strong>
-                                        <span class="pull-right text-muted">
-                                            <em>Yesterday</em>
-                                        </span>
-                                    </div>
-                                    <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...</div>
-                                </a>
-                            </li>
-                            <li class="divider"></li>
-                            <li>
-                                <a class="text-center" href="#">
-                                    <strong>Read All Messages</strong>
-                                    <i class="fa fa-angle-right"></i>
-                                </a>
-                            </li>
-                        </ul>
-                        <!-- /.dropdown-messages -->
-                    </li>
                     <!-- /.dropdown -->
                     <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                            <i class="fa fa-tasks fa-fw"></i>  <i class="fa fa-caret-down"></i>
+                        <a class="dropdown-toggle" data-toggle="modal" data-target="#modalRegProfesion" onclick="listTableProf();" href="#">
+                            <i style="color: #00cc00; font-size: 100%;" class="fa fa-user-md" aria-hidden="true"></i>
                         </a>
-                        <ul class="dropdown-menu dropdown-tasks">
-                            <li>
-                                <a href="#">
-                                    <div>
-                                        <p>
-                                            <strong>Task 1</strong>
-                                            <span class="pull-right text-muted">40% Complete</span>
-                                        </p>
-                                        <div class="progress progress-striped active">
-                                            <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
-                                                <span class="sr-only">40% Complete (success)</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </li>
-                            <li class="divider"></li>
-                            <li>
-                                <a href="#">
-                                    <div>
-                                        <p>
-                                            <strong>Task 2</strong>
-                                            <span class="pull-right text-muted">20% Complete</span>
-                                        </p>
-                                        <div class="progress progress-striped active">
-                                            <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%">
-                                                <span class="sr-only">20% Complete</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </li>
-                            <li class="divider"></li>
-                            <li>
-                                <a href="#">
-                                    <div>
-                                        <p>
-                                            <strong>Task 3</strong>
-                                            <span class="pull-right text-muted">60% Complete</span>
-                                        </p>
-                                        <div class="progress progress-striped active">
-                                            <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%">
-                                                <span class="sr-only">60% Complete (warning)</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </li>
-                            <li class="divider"></li>
-                            <li>
-                                <a href="#">
-                                    <div>
-                                        <p>
-                                            <strong>Task 4</strong>
-                                            <span class="pull-right text-muted">80% Complete</span>
-                                        </p>
-                                        <div class="progress progress-striped active">
-                                            <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
-                                                <span class="sr-only">80% Complete (danger)</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </li>
-                            <li class="divider"></li>
-                            <li>
-                                <a class="text-center" href="#">
-                                    <strong>See All Tasks</strong>
-                                    <i class="fa fa-angle-right"></i>
-                                </a>
-                            </li>
-                        </ul>
-                        <!-- /.dropdown-tasks -->
                     </li>
-                    <!-- /.dropdown -->
                     <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                            <i class="fa fa-bell fa-fw"></i>  <i class="fa fa-caret-down"></i>
+                        <a class="dropdown-toggle" data-toggle="modal" data-target="#regZona" onclick="listTableZona();" href="#">
+                            <i style="color: #F0E62B; font-size: 100%;" class="fa fa-industry" aria-hidden="true"></i>
                         </a>
-                        <ul class="dropdown-menu dropdown-alerts">
-                            <li>
-                                <a href="#">
-                                    <div>
-                                        <i class="fa fa-comment fa-fw"></i> New Comment
-                                        <span class="pull-right text-muted small">4 minutes ago</span>
-                                    </div>
-                                </a>
-                            </li>
-                            <li class="divider"></li>
-                            <li>
-                                <a href="#">
-                                    <div>
-                                        <i class="fa fa-twitter fa-fw"></i> 3 New Followers
-                                        <span class="pull-right text-muted small">12 minutes ago</span>
-                                    </div>
-                                </a>
-                            </li>
-                            <li class="divider"></li>
-                            <li>
-                                <a href="#">
-                                    <div>
-                                        <i class="fa fa-envelope fa-fw"></i> Message Sent
-                                        <span class="pull-right text-muted small">4 minutes ago</span>
-                                    </div>
-                                </a>
-                            </li>
-                            <li class="divider"></li>
-                            <li>
-                                <a href="#">
-                                    <div>
-                                        <i class="fa fa-tasks fa-fw"></i> New Task
-                                        <span class="pull-right text-muted small">4 minutes ago</span>
-                                    </div>
-                                </a>
-                            </li>
-                            <li class="divider"></li>
-                            <li>
-                                <a href="#">
-                                    <div>
-                                        <i class="fa fa-upload fa-fw"></i> Server Rebooted
-                                        <span class="pull-right text-muted small">4 minutes ago</span>
-                                    </div>
-                                </a>
-                            </li>
-                            <li class="divider"></li>
-                            <li>
-                                <a class="text-center" href="#">
-                                    <strong>See All Alerts</strong>
-                                    <i class="fa fa-angle-right"></i>
-                                </a>
-                            </li>
-                        </ul>
-                        <!-- /.dropdown-alerts -->
                     </li>
                     <!-- /.dropdown -->
+
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                             <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
@@ -313,4 +136,122 @@
                 </div>
                 <!-- /.navbar-static-side -->
             </nav>
+
+
+            <div class="modal fade" tabindex="-1" role="dialog" id="modalRegProfesion">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h3 style="font-weight: bold; text-align: center;" class="modal-title">Registrar Profesión</h3>
+                </div>
+                <div class="modal-body">
+                    <!--             <form action="<?= URL; ?>ctrEmpleado/regProfesion" method="POST"> -->
+                    <div class="row col-sm-12">
+                        <div class="form-group col-sm-12">
+                          <div style="text-align:center;" class="col-sm-2">
+                            <i style="color: #00cc00; font-size: 300%;" class="fa fa-user-md" aria-hidden="true"></i>
+                        </div>
+                        <div class="col-sm-8">  
+                            <input placeholder="Ingrese profesión" type="text" id="txtProfesion" class="form-control" required="" style="border-radius:5px;">
+                        </div> 
+                        <div class="col-sm-2">
+                         <button onclick="registrarProfesion()" class="btn btn-primary">Registrar</button>
+                     </div> 
+                 </div>
+             </div> 
+             <!--            </form>   -->
+             <div class="row col-sm-12" style="margin-right: 0; padding-left: 8%">
+               <div class="dataTable_wrapper table-responsive">
+                  <table width="100%" class="table table-striped table-hover" id="tblProfesion">
+                    <thead>
+                      <tr>
+                        <th>Código</th>
+                        <th style="text-align: center;">Profesión</th>
+                        <th>Eliminar</th>
+                        <th>Modificar</th>
+                        <th>Guardar</th>
+                        <th style="display: none;"></th>
+                    </tr>
+                </thead>
+                <tbody id="tbody-profesion">
+ <!--                  <?php $cont = 0; ?>
+                  <?php foreach ($profesiones as $profesion): ?>
+                    <tr>
+                      <td><?= $cont += 1;?></td>
+                      <td><?= $profesion["nombre"]; ?></td>
+
+                      <td style="text-align: center;"><button id='btnEditProf<?= $profesion["id_profesion"]?>' onclick="editarProfesion(this, <?= $profesion["id_profesion"]?>);" class="btn btn-box-tool"><i style="color: green;" class="fa fa-pencil-square-o" arial-hidden="true"></i></button></td>
+
+                      <td style="text-align: center;"><button onclick="borrarProfesion(<?= $profesion["id_profesion"]?>); $(this).parent().parent().remove();" data-dismiss="alert" class="btn btn-box-tool"><i style="color: red;" class="fa fa-times" arial-hidden="true"></i></button></td>
+
+                      <td style="text-align: center;"><button disabled="true" id='btnGuardarProf<?= $profesion["id_profesion"]?>' onclick="guardarCambiosProf(this, <?= $profesion["id_profesion"]?>);" type="button" class="btn btn-box-tool"><i class="fa fa-check" arial-hidden="true"></i></button></td>
+                      <td style="display: none;"><?= $profesion["id_profesion"]?></td>
+                    </tr>
+                <?php endforeach ?> -->
+            </tbody>
+        </table>
+    </div>
+</div>
+</div>
+<div>
+  <div class="modal-footer" style="border-top:none; border-bottom:1px solid;">
+<!--             <button type="button" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
+-->          </div>
+</div>
+</div><!-- /.modal-content -->
+</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+
+
+
+<div class="modal fade" tabindex="-1" role="dialog" id="regZona">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h3 style="font-weight: bold; text-align: center;" class="modal-title">Registrar Zona</h3>
+    </div>
+    <div class="modal-body">
+      <div class="row col-sm-12">
+        <div class="form-group col-sm-12">
+          <div style="text-align:center;" class="col-sm-2">
+            <i style="color: #00cc00; font-size: 300%;" class="fa fa-industry" aria-hidden="true"></i>
+        </div>
+        <div class="col-sm-8">  
+            <input placeholder="Ingrese zona" type="text" id="txtZona" class="form-control" required="" style="border-radius:5px;">
+        </div> 
+        <div class="col-sm-2">
+         <button onclick="registrarZona()" class="btn btn-primary">Registrar</button>
+     </div> 
+ </div>
+</div> 
+<div class="row col-sm-12" style="margin-right: 0; padding-left: 8%">
+   <div class="dataTable_wrapper table-responsive">
+      <table width="100%" class="table table-striped table-hover" id="tblProfesion">
+        <thead>
+          <tr>
+            <th>Código</th>
+            <th style="text-align: center;">Zona</th>
+            <th>Eliminar</th>
+            <th>Modificar</th>
+            <th>Guardar</th>
+            <th style="display: none;"></th>
+        </tr>
+    </thead>
+    <tbody id="tbody-zona">
+    </tbody>
+</table>
+</div>
+</div>
+</div>
+<div>
+  <div class="modal-footer" style="border-top:none; border-bottom:1px solid;">
+  </div>
+</div>
+</div>
+</div>
+</div>
 

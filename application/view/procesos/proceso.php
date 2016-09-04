@@ -119,7 +119,7 @@
                         <table class="table table-striped table-bordered table-hover">
                           <thead>
                             <tr>
-                              <th style="text-align: center;"  colspan="6">PROCESOS</th>
+                              <th style="text-align: center;"  colspan="5">PROCESOS</th>
                             </tr>
                             <tr>
                               <th style="display: none;"></th>
@@ -127,7 +127,7 @@
                               <th>Nombre</th>
                               <th>Rutinario</th>
                               <th>Zona</th>
-                              <th style="text-align: center;">Modificar</th>
+        <!--                       <th style="text-align: center;">Modificar</th> -->
                               <th style="text-align: center;">Quitar</th>
                             </tr>
                           </thead>
@@ -139,11 +139,11 @@
                                 <td><?= $proceso["nobre"] ?></td>
                                 <td><?= $proceso["rutinaria"] ?></td>
                                 <td><?= $proceso["zona"] ?></td>
-                                <td style="text-align: center">
+  <!--                               <td style="text-align: center">
                                     <button data-toggle="modal" data-target="" class="btn btn-box-tool">
                                       <i style="color: green; font-size: 150%;" class="fa fa-pencil-square-o"></i>
                                     </button>
-                                </td>
+                                </td> -->
                                 <td style="text-align: center;">
                                     <button onclick="borrarProceso(<?= $proceso["id_proceso"] ?>)" class="btn btn-box-tool">
                                       <i style="color: red; font-size: 150%;" class="fa fa-times"></i>
@@ -203,54 +203,6 @@
 
 
 
-    <div class="modal fade" tabindex="-1" role="dialog" id="regZona">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h3 style="font-weight: bold; text-align: center;" class="modal-title">Registrar Zona</h3>
-          </div>
-          <div class="modal-body">
-              <div class="row col-sm-12">
-                <div class="form-group col-sm-12">
-                  <div style="text-align:center;" class="col-sm-2">
-                    <i style="color: #00cc00; font-size: 300%;" class="fa fa-industry" aria-hidden="true"></i>
-                  </div>
-                  <div class="col-sm-8">  
-                    <input placeholder="Ingrese zona" type="text" id="txtZona" class="form-control" required="" style="border-radius:5px;">
-                  </div> 
-                  <div class="col-sm-2">
-                   <button onclick="registrarZona()" class="btn btn-primary">Registrar</button>
-                 </div> 
-               </div>
-             </div> 
-           <div class="row col-sm-12" style="margin-right: 0; padding-left: 8%">
-             <div class="dataTable_wrapper table-responsive">
-              <table width="100%" class="table table-striped table-hover" id="tblProfesion">
-                <thead>
-                  <tr>
-                    <th>Código</th>
-                    <th style="text-align: center;">Zona</th>
-                    <th>Eliminar</th>
-                    <th>Modificar</th>
-                    <th>Guardar</th>
-                    <th style="display: none;"></th>
-                  </tr>
-                </thead>
-                <tbody id="tbody-zona">
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-        <div>
-          <div class="modal-footer" style="border-top:none; border-bottom:1px solid;">
-        </div>
-</div>
-</div>
-</div>
-</div>
-
 
 
 
@@ -288,7 +240,7 @@
                       <td><?= $cont += 1;?></td>
                       <td><?= $peligro["descripcion"];?></td>
                       <td><?= $peligro["clasificacion"];?></td>
-                      <td style="text-align: center;"><?= $peligro["riesgo"];?></td>
+                      <td style="text-align: center;"><?= $peligro["nivelRiesgo"];?></td>
                       <td style="text-align: center;">
                         <button id="btn<?= $peligro['id_peligro'];?>" type="button" class="btn btn-box-tool" onclick="asociarPeligro(this)"><i style="color: blue;" class="fa fa-plus"></i></button>
                       </td>
