@@ -53,9 +53,16 @@
 			include APP.'view/_templates/footer.php';
 		}
 
-		// public function consPeligros()
-		// {
-		// 	$this->_modelPeligro->__SET("id_proceso", $_POST["id_proceso"]);
-		// 	echo json_encode($this->_modelPeligro->consPeligros());
-		// }
+		public function listarPeligros(){
+			$peligros = $this->_modelPeligro->listarPeligros();
+
+			include APP.'view/_templates/header.php';
+			include APP.'view/peligro/listarPeligros.php';
+			include APP.'view/_templates/footer.php';
+		}
+
+		public function borrarPeligro(){
+			$this->_modelPeligro->__SET("idPeligro", $_POST["idPeligro"]);
+			echo json_encode($this->_modelPeligro->borrarPeligro());
+		}
 	}

@@ -48,6 +48,7 @@
     <script src="<?php echo URL; ?>js/cargo.js"></script>
     <script src="<?php echo URL; ?>js/proceso.js"></script>
     <script src="<?php echo URL; ?>js/incapacidad.js"></script>
+    <script src="<?php echo URL; ?>js/peligro.js"></script>
 
 
     <!-- Page-Level Demo Scripts - Tables - Use for reference -->
