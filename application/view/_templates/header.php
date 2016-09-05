@@ -168,8 +168,8 @@
                       <tr>
                         <th>Código</th>
                         <th style="text-align: center;">Profesión</th>
-                        <th>Eliminar</th>
                         <th>Modificar</th>
+                        <th>Eliminar</th>
                         <th>Guardar</th>
                         <th style="display: none;"></th>
                     </tr>
@@ -235,8 +235,8 @@
           <tr>
             <th>Código</th>
             <th style="text-align: center;">Zona</th>
-            <th>Eliminar</th>
             <th>Modificar</th>
+            <th>Eliminar</th>
             <th>Guardar</th>
             <th style="display: none;"></th>
         </tr>

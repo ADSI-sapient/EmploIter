@@ -225,7 +225,7 @@
 
 
 
-  <div class="modal fade" tabindex="-1" role="dialog" id="modInca">
+  <div class="modal fade" role="dialog" id="modInca">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
